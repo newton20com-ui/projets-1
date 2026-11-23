@@ -26,7 +26,7 @@ render('/catalogue');check('Catalogue rendu avec 16 fiches', (main.innerHTML.mat
 render('/produit/neo-pods');check('Fiche produit et finitions rendues',main.innerHTML.includes('Neo Pods')&&main.innerHTML.includes('Blanc craie')&&main.innerHTML.includes('Ajouter au panier'));
 render('/produit/filaires-usbc');check('Indisponibilité illustrée dans la vue',main.innerHTML.includes('data-add-cart disabled'));
 render('/panier');check('Panier vide visible',main.innerHTML.includes('Votre panier attend'));
-render('/recapitulatif');check('Récapitulatif fictif rendu',main.innerHTML.includes('aucune commande ni aucun paiement réel'));
+render('/recapitulatif');check('Récapitulatif laboratoire rendu',main.innerHTML.includes('Laboratoire interactif') && main.innerHTML.includes('sans paiement réel'));
 render('/a-propos');check('Page explication rendue',main.innerHTML.includes('Atlas Store est une boutique fictive'));
 render('/route-inconnue');check('Erreur 404',main.innerHTML.includes('Cet objet reste introuvable'));
 console.log('8/8 rendus testés dans un DOM minimal simulé (non équivalent à un navigateur).');

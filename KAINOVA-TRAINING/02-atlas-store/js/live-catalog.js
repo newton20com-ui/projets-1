@@ -5,7 +5,7 @@ let error = null;
 export function getSettings(){return settings}
 export function getCatalogError(){return error}
 export async function refreshLiveCatalog(){
-  if(!isLive)return {isDemo:true};
+  // En laboratoire, le même catalogue local modifiable est partagé entre boutique et administration.
   try{
     const data=await catalog();
     CATEGORIES.splice(0,CATEGORIES.length,...data.categories.filter(c=>c.active).map((c,i)=>({id:c.slug,label:c.label,short:c.label,description:c.description,art:data.products.find(p=>p.category===c.slug)?.slug||'',order:c.order})));
@@ -16,6 +16,6 @@ export async function refreshLiveCatalog(){
     })));
     settings=data.settings;
     error=null;
-    return {isDemo:false,count:PRODUCTS.length};
+    return {isDemo:!isLive,count:PRODUCTS.length};
   }catch(e){error=e.message||'Service indisponible';PRODUCTS.splice(0);CATEGORIES.splice(0);return {error};}
 }

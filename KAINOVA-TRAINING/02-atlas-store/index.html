@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f8f6f2">
-  <meta name="description" content="Atlas Store, catalogue interactif fictif d'accessoires tech. Explorez 16 produits, comparez les variantes et composez un panier de démonstration, sans paiement réel.">
+  <meta name="description" content="Atlas Store, boutique laboratoire interactive : catalogue, variantes, administration et commandes de test locales, sans paiement réel.">
   <title>Atlas Store — Vos essentiels tech, autrement.</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
@@ -16,15 +16,15 @@
   <header class="site-header" id="site-header">
     <div class="header-inner container">
       <a class="logo" href="#/" aria-label="Atlas Store, accueil"><span class="logo__mark" aria-hidden="true"><span></span><span></span><span></span></span><span>atlas<span class="logo__dot">.</span><small>store</small></span></a>
-      <nav class="header-nav" aria-label="Navigation principale"><a data-nav="home" href="#/">Accueil</a><a data-nav="catalog" href="#/catalogue">La boutique</a><a data-nav="about" href="#/a-propos">Notre approche</a></nav>
+      <nav class="header-nav" aria-label="Navigation principale"><a data-nav="home" href="#/">Accueil</a><a data-nav="catalog" href="#/catalogue">La boutique</a><a data-nav="about" href="#/a-propos">Notre approche</a><a class="nav-admin-link" href="./admin.html">Administration</a></nav>
       <form id="header-search" class="header-search" role="search"><label for="global-search" class="sr-only">Rechercher dans le catalogue</label><svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="10.7" cy="10.7" r="6.6" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input type="search" id="global-search" placeholder="Un accessoire en tête ?" autocomplete="off"><kbd class="search-hint" aria-hidden="true">↵</kbd></form>
       <button id="cart-trigger" class="cart-trigger" type="button" aria-label="Ouvrir le panier, 0 article" aria-haspopup="dialog" aria-controls="cart-drawer"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 8.5h15l-1.1 12H5.6z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="cart-count" id="header-cart-count">0</span></button>
     </div>
-    <div class="mobile-nav container" aria-label="Navigation mobile"><a href="#/">Accueil</a><a href="#/catalogue">Catalogue</a><a href="#/a-propos">À propos</a></div>
+    <div class="mobile-nav container" aria-label="Navigation mobile"><a href="#/">Accueil</a><a href="#/catalogue">Catalogue</a><a href="#/a-propos">À propos</a><a href="./admin.html">Administration</a></div>
   </header>
   <main id="main-content" tabindex="-1"></main>
   <footer class="footer">
-    <div class="container footer__top"><div><a class="footer-logo" href="#/">atlas<span>.</span>store</a><p>De belles idées. Des objets utiles.<br>Une boutique imaginée pour apprendre.</p></div><div class="footer__links"><div><strong>Explorer</strong><a href="#/catalogue">La boutique</a><a href="#/catalogue?category=audio">Audio</a><a href="#/catalogue?category=informatique">Bureau</a></div><div><strong>Informations</strong><a href="#/a-propos">Notre approche</a><a href="#/panier">Mon panier</a><a href="#/recapitulatif">Récapitulatif</a></div></div></div>
+    <div class="container footer__top"><div><a class="footer-logo" href="#/">atlas<span>.</span>store</a><p>De belles idées. Des objets utiles.<br>Une boutique imaginée pour apprendre.</p></div><div class="footer__links"><div><strong>Explorer</strong><a href="#/catalogue">La boutique</a><a href="#/catalogue?category=audio">Audio</a><a href="#/catalogue?category=informatique">Bureau</a></div><div><strong>Informations</strong><a href="#/a-propos">Notre approche</a><a href="#/panier">Mon panier</a><a href="#/recapitulatif">Récapitulatif</a><a href="./admin.html">Administration</a></div></div></div>
     <div class="container footer__bottom"><span>© <span id="footer-year">2026</span> Atlas Store</span><span>Projet pédagogique fictif · Kainova Training / 02</span><span>Aucune commande ni paiement réel.</span></div>
   </footer>
   <div id="drawer-layer" class="drawer-layer" hidden><div class="drawer-backdrop" data-close-drawer></div><aside id="cart-drawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1"><div class="drawer__top"><div><p class="eyebrow">MON ESPACE</p><h2 id="drawer-title">Mon panier <span id="drawer-count"></span></h2></div><button class="icon-btn" type="button" id="drawer-close" aria-label="Fermer le panier"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div><div class="drawer__content" id="drawer-items"></div><div class="drawer__bottom" id="drawer-bottom"></div></aside></div>

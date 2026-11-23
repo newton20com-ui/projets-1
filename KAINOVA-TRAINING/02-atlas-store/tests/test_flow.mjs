@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+const data=new Map();
+globalThis.localStorage={getItem:k=>data.has(k)?data.get(k):null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)};
+globalThis.document={dispatchEvent(){}};
+globalThis.CustomEvent=class{constructor(type){this.type=type}};
+const {refreshLiveCatalog,getSettings}=await import('../js/live-catalog.js');
+const {PRODUCTS,CATEGORIES}=await import('../js/products.js');
+const {addItem,getDetailedCart,clearCart,cartCount}=await import('../js/cart.js');
+const {createOrder,trackOrder,adminRequest,isLive,catalog}=await import('../js/api.js');
+let count=0;function check(name,condition){assert.ok(condition,name);count++;console.log('✓',name)}
+check('Mode laboratoire activé sans réseau',!isLive);
+check('Catalogue API locale', (await catalog()).products.length===16);
+const result=await refreshLiveCatalog();check('Catalogue public affiché avec 16 produits',result.count===16&&PRODUCTS.length===16&&CATEGORIES.length===4);
+check('Paramètres de remise chargés',getSettings().pickupEnabled&&getSettings().deliveryEnabled);
+const p=PRODUCTS.find(x=>x.variants.some(v=>v.stock>=2));const v=p.variants.find(v=>v.stock>=2);
+const stock=v.stock;check('Ajout d’une variante au panier',addItem(p.id,v.id,2).ok&&cartCount()===2);
+check('Récapitulatif du panier correct',getDetailedCart()[0].total===(p.price+v.extraPrice)*2);
+const payload={requestKey:'test-flow-0001',name:'Test navigateur',contact:'000000000',fulfillment:'pickup',city:'',address:'',notes:'',consent:true,items:getDetailedCart().map(x=>({productId:x.productId,variantId:x.variantId,quantity:x.quantity}))};
+const order=await createOrder(payload);check('Commande test validée via la même API que l’interface',order.reference.startsWith('AT-TEST-')&&!!order.trackingToken);
+clearCart();await refreshLiveCatalog();check('Stock décrémenté et panier vidé',cartCount()===0&&PRODUCTS.find(x=>x.id===p.id).variants.find(x=>x.id===v.id).stock===stock-2);
+const tracking=await trackOrder(order.reference,order.trackingToken);check('Suivi test récupéré',tracking.status==='new'&&tracking.items.length===1);
+check('Administration accède au même ordre', (await adminRequest('/orders')).orders[0].reference===order.reference);
+const adminId=(await adminRequest('/orders')).orders[0].id;
+await adminRequest('/order-status',{method:'POST',body:{id:adminId,status:'cancelled'}});
+await refreshLiveCatalog();check('Annulation restitue le stock',PRODUCTS.find(x=>x.id===p.id).variants.find(x=>x.id===v.id).stock===stock);
+console.log(`${count}/${count} tests du parcours complet API locale réussis.`);

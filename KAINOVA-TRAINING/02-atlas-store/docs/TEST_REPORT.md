@@ -42,7 +42,7 @@ Ce document distingue explicitement les tests exécutés sur les fichiers locaux
 
 ## État de livraison
 
-- Code du pilote intégré sur `main` dans le dossier `KAINOVA-TRAINING/02-atlas-store/` ; l'API et le backend ne sont pas activés.
+- Branche isolée de développement : `feature/02-atlas-store-pilot`.
 - Projet 01 inchangé.
 - Migration PostgreSQL, programme d'import et API créés **mais non déployés** sur un Supabase Atlas.
 - Checkout volontairement indisponible si `js/config.js` ne contient pas l'URL et la clé publique d'un projet Atlas dédié.
@@ -58,3 +58,16 @@ Ce document distingue explicitement les tests exécutés sur les fichiers locaux
 6. Faire valider les éléments juridiques, prix et stocks avant d'accueillir des commandes réelles.
 
 **Conclusion : la version de travail est une implémentation candidate, pas une boutique pilote validée.**
+
+## Mise à jour — laboratoire interactif local (23 novembre 2026)
+
+- 23 tests unitaires spécifiques au laboratoire : produits initiaux, création de commande de test, suivi, jeton incorrect, décrément de stock, idempotence, quantités et stocks invalides, commandes visibles en administration, transitions, annulation et restitution de stock, catégories, création/modification/archivage de produit, paramètres, persistance et stockage corrompu — **23/23 réussis**, exécutés avec Node.js et stockage simulé.
+- 11 tests de bout en bout **au niveau des modules API locaux** (catalogue → panier → commande → suivi → administration → annulation), avec stockage simulé : **11/11 réussis**.
+- 3 vérifications du DOM simulé de l’administration (affichage du tableau de bord, catalogue initial, absence de faux login) : **3/3 réussies**.
+- Tests historiques de logique du panier : **28/28 réussis**.
+- Rendu DOM simulé des écrans : **8/8 réussis**.
+- Contrôles statiques architecture pilote : **20/20 réussis**.
+- API simulée avec fake services : **14/14 réussis**.
+- Vérifications de syntaxe JavaScript : réalisées sur tous les modules.
+- **Non validé** : parcours manuel sur Vercel, responsive via navigateur réel, authentification et transactions serveur Supabase, email et paiement réel.
+- Statut : administration et commandes de TEST enregistrées localement ; aucune donnée client réelle ne doit être renseignée.

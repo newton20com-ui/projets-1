@@ -1,8 +1,31 @@
 # Atlas Store — Kainova Training / Projet 02
 
-**Évolution pilote intégrée au code sur `main`, mais backend non configuré.** Ce dossier contient le frontend original (conservé), des interfaces de commande et d'administration, une API Supabase Edge Function, des migrations PostgreSQL, des tests et une documentation d'exploitation.
+**Évolution pilote en préparation, distincte de la démonstration V2 déjà publiée.** Ce dossier contient le frontend original (conservé), des interfaces de commande et d'administration, une API Supabase Edge Function, des migrations PostgreSQL, des tests et une documentation d'exploitation.
 
-**État au 23 novembre 2026 :** cette évolution est présente dans `KAINOVA-TRAINING/02-atlas-store/` sur la branche `main`, comme demandé. **Aucune base Atlas indépendante n'a encore été créée ou migrée ; aucune commande réelle n'a été enregistrée ni testée.** Comme les valeurs de `js/config.js` sont vides, le site continue à fonctionner en démonstration. L'existence du code ne signifie pas que la boutique est opérationnelle. Ne pas ouvrir le checkout aux clients avant tous les tests de `docs/TEST_REPORT.md`.
+**État au 23 novembre 2026 :** code préparé sur la branche `feature/02-atlas-store-pilot`. **Aucune base Atlas indépendante n'a encore été créée ou migrée ; aucune commande réelle n'a été enregistrée ou testée.** L'existence du code ne signifie pas que la boutique est opérationnelle. La branche `main` reste le site démonstratif actuellement déployé. N'activez pas le checkout auprès de clients avant tous les tests de `docs/TEST_REPORT.md`.
+
+
+## Mode laboratoire utilisable immédiatement (sans Supabase)
+
+**Administration accessible** : ouvrez `/admin.html` sur le site Atlas Store (lien « Administration » dans la navigation). Aucune connexion n'est demandée **en laboratoire**. C'est volontaire : il ne s'agit PAS d'un espace privé sécurisé, et aucun changement n'affecte les autres visiteurs ou appareils.
+
+Le laboratoire est maintenant **interactif et persistant dans ce navigateur** :
+
+1. Ouvrez l'administration, onglet **Produits** : créez ou modifiez un article, son prix, ses images, ses variantes et ses stocks ; archivez-le ou publiez-le en test.
+2. Modifiez **Catégories** et **Paramètres** (options de retrait/livraison et frais de livraison de test).
+3. Ouvrez la **Boutique**, ajoutez un produit disponible au panier, sélectionnez ses variantes, affichez le récapitulatif et cliquez **Passer une commande de test**.
+4. Utilisez un **nom et un contact fictifs** (ex. « Client Test », « 000000000 »). La commande est enregistrée dans le localStorage de **ce même navigateur**, avec une référence `AT-TEST-...` et un lien de suivi local.
+5. Retournez sur `/admin.html` (même navigateur et même domaine) → **Commandes** : consultez les lignes, modifiez l'état, ajoutez des notes et exportez un CSV. L'annulation restaure le stock local.
+6. Depuis le tableau de bord, le bouton **Réinitialiser toutes les données de test** efface les essais locaux après confirmation.
+
+### Limites impératives du laboratoire
+
+- Ce n'est **pas** une boutique commerciale opérationnelle. Ni authentification, ni base de données distante, ni emails transactionnels, ni paiement, ni commandes reçues par un serveur.
+- Les valeurs modifiées, produits ajoutés, images téléversées et informations des commandes sont stockés **dans le navigateur** ; ils ne se synchronisent pas entre appareils, et disparaîtront si l'on supprime les données du site. Certaines navigations privées bloquent le stockage.
+- Comme l'administration de test est librement accessible à tous, **n'y saisissez jamais de vraie donnée client ou de données confidentielles**. Les produits initiaux sont fictifs et les photos indicatives.
+- Les prix et stocks sont recalculés dans le code local, ce qui suffit à apprendre/tester le parcours, mais **ne protège pas contre la manipulation du navigateur ou les commandes concurrentes de plusieurs appareils**.
+- Les vrais comptes administrateurs, commandes commerciales, emails, sauvegardes centralisées et contrôles serveur exigent un **projet Supabase Atlas dédié** configuré et testé. Il est volontairement absent ; les valeurs publiques `js/config.js` restent vides.
+- Dès qu'un backend réel sera configuré, la boutique passera au mode serveur : l'administration demandera une authentification et seules les références réellement publiées pourront être commandées.
 
 ## Objectif produit
 
@@ -61,7 +84,7 @@ Ces tests ne remplacent pas les tests réels contre une base SQL et le navigateu
 
 ## Déploiement Vercel
 
-Un **nouveau projet Vercel** doit pointer sur le sous-dossier `KAINOVA-TRAINING/02-atlas-store` du dépôt commun, framework `Other`, sans commande de compilation. Ne jamais remplacer le projet Vercel Nova Studio. Le code du pilote est déjà sur `main` ; son activation commerciale reste interdite tant que la base, l'authentification et les tests d'intégration ne sont pas validés. Les secrets API restent dans Supabase, jamais dans `js/config.js`.
+Un **nouveau projet Vercel** doit pointer sur le sous-dossier `KAINOVA-TRAINING/02-atlas-store` du dépôt commun, framework `Other`, sans commande de compilation. Ne jamais remplacer le projet Vercel Nova Studio. La branche stable `main` ne doit être mise à jour qu'après la validation de la branche de travail et de la base Atlas. Les secrets API restent dans Supabase, jamais dans `js/config.js`.
 
 Pour la procédure complète : [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Pour les incidents : [docs/OPERATIONS.md](docs/OPERATIONS.md).
 

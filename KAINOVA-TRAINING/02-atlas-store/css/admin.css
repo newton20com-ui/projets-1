@@ -32,3 +32,9 @@
 @media(max-width:900px){.admin-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.variant-row{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-two-column{grid-template-columns:1fr}}
 @media(max-width:600px){.admin-header>span{display:none}.admin-shell{padding-top:1rem}.admin-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-stat strong{font-size:1.4rem}.admin-form-grid{grid-template-columns:1fr}.admin-form-grid .span-2{grid-column:auto}.variant-row{grid-template-columns:1fr 1fr}.admin-table{min-width:580px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Avertissement explicite : laboratoire local non protégé. */
+.lab-admin-banner{margin:22px 0 26px;padding:17px 21px;border:1px solid #e9c8b5;background:#fff1e8;color:#603d32;border-radius:12px;font-size:14px;line-height:1.55}
+.lab-admin-banner strong{display:block;font-size:12px;letter-spacing:.07em;margin-bottom:4px}
+
+.admin-head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}

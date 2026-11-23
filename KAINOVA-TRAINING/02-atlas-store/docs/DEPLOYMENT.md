@@ -5,9 +5,9 @@
 ## 1. Branche Git et hébergement
 
 - Dépôt : `newton20com-ui/projets-1`, **ne travailler que dans** `KAINOVA-TRAINING/02-atlas-store/`.
-- Code du pilote intégré dans le dossier Atlas sur **`main`** à la demande du propriétaire. Le backend est désactivé tant que `js/config.js` n'est pas renseigné.
+- Branche de préparation : `feature/02-atlas-store-pilot`. `main` reste la démonstration validée.
 - Vercel : projet **Atlas Store** existant ou nouvel import distinct du Projet 01, `Root Directory=KAINOVA-TRAINING/02-atlas-store`, preset Other, framework sans compilation, output directory par défaut.
-- Le dossier sur `main` conserve le **mode démonstration** tant que le backend est désactivé. Tester la connexion au nouveau Supabase Atlas dans un environnement de préproduction distinct avant d'activer les commandes publiques.
+- Tester d'abord sur un déploiement de **preview de branche** ; ne fusionner sur `main` qu'après l'acceptation réelle.
 
 ## 2. Créer un projet Supabase ATLAS indépendant
 
@@ -61,8 +61,13 @@ Dans Supabase Auth / URL Configuration, enregistrer l'URL de l'admin `/admin.htm
 - Réaliser une commande **de test** sans encaisser de paiement, puis la supprimer/archiver selon procédure avant exploitation.
 - Ajouter des mentions de confidentialité et conditions de vente vérifiées pour le contexte commercial réel.
 
-Consigner les preuves dans `docs/TEST_REPORT.md`. **Ne pas activer la vente réelle tant que les principaux scénarios ne passent pas réellement.**
+Consigner les preuves dans `docs/TEST_REPORT.md`. **Pas de fusion en `main` tant que les principaux scénarios ne passent pas réellement.**
 
 ## 7. Retour arrière
 
 Si la nouvelle UI provoque un problème, restaurer le commit précédent du **seul dossier Atlas** sur `main` et redéployer le projet Vercel Atlas. Les tables SQL, commandes et photographies uploadées doivent rester intactes ; ne pas tenter de rétrograder la base en production sans sauvegarde et migration de retour validée. Désactiver provisoirement la fonction de commande (ou retirer l'origine autorisée) en cas d'incident de sécurité.
+
+
+## Mode laboratoire actuellement déployable depuis `main`
+
+Tant que `js/config.js` ne contient pas d'URL publique et de clé publishable Supabase Atlas, la boutique et `/admin.html` démarrent en **mode laboratoire local**, sans login. Ce mode permet de tester les produits, panier, commandes de test, suivi, catégories, paramètres, variantes et stock sur le même navigateur. Aucun backend, aucun serveur de commandes, aucune protection des données commerciales. **Ne pas utiliser de données client réelles.** Ne pas activer Supabase sans projet Atlas isolé et validation de la sécurité.

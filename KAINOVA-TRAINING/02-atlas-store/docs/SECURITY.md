@@ -41,3 +41,8 @@ Les tables du schéma `public` Atlas activent RLS. Les permissions `anon/authent
 - Ne pas enregistrer dans des logs publics les noms, téléphones, adresses ni tokens de suivi ; la politique de conservation des journaux est à définir.
 - La conformité aux exigences juridiques locales (vente, confidentialité, données personnelles) n'a pas été validée.
 - Les sauvegardes, récupérations de compte, CORS réels, protection CSRF selon architecture et politique d'accès doivent être vérifiés sur l'infrastructure finale.
+
+
+## Avertissement sécurité — mode laboratoire
+
+Sans configuration Supabase, l'administration de démonstration est **ouverte sans authentification** et ne stocke les données que dans le localStorage de chaque navigateur. Elle n'est PAS appropriée à une vraie boutique, ni au traitement de données personnelles. N'y saisir que des données factices. Cela ne constitue pas une faille d'un backend : aucun backend commercial n'est accessible ; le mode Supabase réel doit conserver son authentification, ses contrôles d'autorisation serveur et RLS. Les URL, produits et commandes laboratoires peuvent être modifiés via les outils du navigateur et ne sont jamais une source de vérité commerciale.

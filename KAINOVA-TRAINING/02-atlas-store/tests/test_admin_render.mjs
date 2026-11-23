@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+const memory=new Map();globalThis.localStorage={getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v),removeItem:k=>memory.delete(k)};
+const docListeners={};
+const el = (id)=>({id,innerHTML:'',hidden:true,textContent:'',classList:{add(){},remove(){}},addEventListener(type,handler){this[type]=handler},querySelector(){return null},querySelectorAll(){return []}});
+const root=el('admin-root'),logout=el('admin-logout'),toast=el('admin-toast');
+globalThis.document={querySelector:s=>({'#admin-root':root,'#admin-logout':logout,'#admin-toast':toast}[s]||null),addEventListener(type,cb){docListeners[type]=cb}};
+globalThis.window={addEventListener(){}};
+globalThis.location={hash:'',pathname:'/admin.html',origin:'https://atlas.test'};
+await import('../js/admin.js');
+await new Promise(resolve=>setImmediate(resolve));
+assert.match(root.innerHTML,/MODE LABORATOIRE/);
+assert.match(root.innerHTML,/Espace commerçant/);
+assert.match(root.innerHTML,/16/);
+assert.equal(logout.hidden,true);
+console.log('✓ Administration de laboratoire ouverte sans authentification fictive');
+console.log('✓ 16 produits chargés dans les tableaux de bord et navigation');
+console.log('✓ Bouton de déconnexion masqué en laboratoire non protégé');

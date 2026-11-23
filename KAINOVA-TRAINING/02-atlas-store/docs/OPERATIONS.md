@@ -43,3 +43,8 @@ Les commandes existent même lorsque l'email échoue. Vérifier d'abord l'onglet
 ## Récupération en cas d'incident
 
 En cas de risque sur les données clients, bloquer le checkout avant investigation, retirer les secrets compromis, inspecter les logs sans exporter les données sensibles, restaurer depuis une sauvegarde **vérifiée**, et contrôler les états de commandes/stock avant reprise. La restauration complète en production n'a pas été testée dans cette conversation.
+
+
+## Utilisation du laboratoire local
+
+L'administration est accessible sans mot de passe **uniquement parce que la configuration Supabase est absente**. Ouvrir `/admin.html`, puis les onglets Produits, Catégories, Commandes et Paramètres. Tous les changements restent dans le localStorage du navigateur ; les commandes `AT-TEST-...` sont des essais, sans paiement réel ni email. Pour voir une commande créée sur le site public, utiliser **le même appareil et navigateur**, puis Actualiser dans l'administration. Le bouton Réinitialiser efface ce laboratoire local après confirmation. Utiliser exclusivement des identités fictives. Ne pas utiliser le laboratoire comme environnement commerçant.

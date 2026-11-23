@@ -158,3 +158,8 @@ Face à un bug, ne pas simplement demander « refais tout ». Suivre la chaîne 
 8. **Le bouton WhatsApp envoie-t-il automatiquement un message ?** Non : une ouverture de conversation et un envoi automatique sont deux opérations différentes.
 9. **Pourquoi développer sur une branche séparée ?** Pour que la version déployée et validée reste utilisable pendant les tests de l'évolution.
 10. **Quand peut-on dire que le pilote est opérationnel ?** Quand base, Auth, commandes, stock, sécurité, parcours mobile et déploiement ont été testés avec succès sur une instance dédiée et que les conditions d'exploitation ont été vérifiées.
+
+
+## Une expérience observable avant le backend : le laboratoire local
+
+Atlas Store propose un mode laboratoire lorsque `js/config.js` n'est pas configuré. Les fonctions de `js/lab-store.js` reçoivent les événements depuis `js/api.js` et enregistrent les changements dans `localStorage`. Tu peux observer les commandes de test dans `/admin.html` puis comparer les stocks après achat et annulation. Cela permet de comprendre le flux UI → événements → données locales, **mais n'est pas une vraie API**. Le backend Supabase réel appliquera séparément les permissions, les calculs et les transactions SQL.

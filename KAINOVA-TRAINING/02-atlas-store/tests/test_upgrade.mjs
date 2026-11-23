@@ -12,9 +12,9 @@ check('Ancien catalogue de 16 objets préservé',()=>assert.equal(PRODUCTS.lengt
 check('Quatre catégories préservées',()=>assert.equal(CATEGORIES.length,4));
 check('Deux espaces indépendants',()=>{assert.ok(existsSync(join(root,'index.html')));assert.ok(existsSync(join(root,'admin.html')))});
 check('Configuration publique sans secret actif',()=>{const cfg=read('js/config.js');assert.match(cfg,/publishableKey:\s*''/);assert.doesNotMatch(cfg,/sb_secret_|eyJ[a-zA-Z0-9_-]{50}/)});
-check('Catalogue connecté et fallback DEMO distinct',()=>{const s=read('js/live-catalog.js');assert.match(s,/PRODUCTS\.splice\(0/);assert.match(s,/if\(!isLive\)/);assert.match(s,/error=null/)});
-check('Checkout uniquement via l’API, non par interface fictive',()=>{const s=read('js/app.js');assert.match(s,/createOrder\(data\)/);assert.match(s,/result\?\.reference/);assert.match(s,/isLive/)});
-check('Formulaire admin protégé par auth',()=>{const s=read('js/admin.js');assert.match(s,/adminRequest\('\/session'\)/);assert.match(s,/getSession\(\)/)});
+check('Catalogue connecté avec laboratoire local distinct',()=>{const s=read('js/live-catalog.js');assert.match(s,/PRODUCTS\.splice\(0/);assert.match(s,/isDemo:!isLive/);assert.match(s,/error=null/)});
+check('Checkout via API serveur ou stockage test explicite',()=>{const s=read('js/app.js');assert.match(s,/createOrder\(data\)/);assert.match(s,/result\?\.reference/);assert.match(s,/isLive/)});
+check('Administration serveur authentifiée, laboratoire local distingué',()=>{const s=read('js/admin.js');assert.match(s,/adminRequest\('\/session'\)/);assert.match(s,/getSession\(\)/)});
 check('RLS sur toutes tables métier',()=>{for(const t of ['atlas_products','atlas_variants','atlas_orders','atlas_order_items','atlas_admins','atlas_tracking_tokens','atlas_rate_limits','atlas_notifications','atlas_audit'])assert.match(sql,new RegExp('alter table public\\.'+t+' enable row level security;'))});
 check('RPC privilégiées privées pour anon et authenticated',()=>{for(const f of ['atlas_place_order','atlas_limit_requests','atlas_set_order_status','atlas_save_product'])assert.match(sql,new RegExp('revoke all on function public\\.'+f+'\\('))});
 check('Prix revalidés côté base avec stock verrouillé',()=>{assert.match(sql,/for update of vr/);assert.match(sql,/v\.base_price\+v\.price_delta/);assert.match(sql,/stock=stock-qty/)});

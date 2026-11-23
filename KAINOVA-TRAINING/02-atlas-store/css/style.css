@@ -384,3 +384,6 @@ svg{display:block}
 .status-history li{padding:1rem;border-left:4px solid #fa7442;background:#fff;border-radius:0 8px 8px 0}
 .status-history time{display:block;color:#706a65;font-size:.82rem;margin-top:.3rem}
 @media(max-width:800px){.checkout-layout{grid-template-columns:1fr}.checkout-summary{position:static}}
+
+/* Administration visible dans la navigation d’Atlas Store. */
+.header-nav .nav-admin-link{color:var(--orange);font-weight:800}
