@@ -84,6 +84,7 @@ async function loadCatalog(includeAll=false){
   return {products:list,categories:(categories||[]).map((c:any)=>({id:c.id,slug:c.slug,label:c.name,description:c.description,active:c.active,order:c.sort_order})),
     settings:settings?{storeName:settings.store_name,phone:settings.phone,whatsapp:settings.whatsapp,email:settings.email,city:settings.city,
       pickupDescription:settings.pickup_description,pickupEnabled:settings.pickup_enabled,deliveryEnabled:settings.delivery_enabled,
+      ...(includeAll ? {notificationEmail:settings.notification_email} : {}),
       deliveryFee:settings.delivery_fee,legalNotice:settings.legal_notice,privacyNotice:settings.privacy_notice,terms:settings.terms}:null};
 }
 async function createOrder(req:Request){
