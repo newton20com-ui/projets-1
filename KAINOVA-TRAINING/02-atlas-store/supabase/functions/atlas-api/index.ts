@@ -2,9 +2,11 @@
 // Deploy with verify_jwt=false: public endpoints exist, private endpoints verify the bearer token here.
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL') || '';
 const SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '';
-const TRACKING_SECRET = Deno.env.get('ATLAS_TRACKING_SECRET') || '';
-const RATE_SECRET = Deno.env.get('ATLAS_RATE_SECRET') || '';
-const ALLOWED = (Deno.env.get('ATLAS_ALLOWED_ORIGINS') || '').split(',').map(s => s.trim()).filter(Boolean);
+// Secrets are derived from Supabase's server-only service credential when not explicitly configured.
+// Different domain suffixes prevent token reuse across purposes; never sent to browsers.
+const TRACKING_SECRET = Deno.env.get('ATLAS_TRACKING_SECRET') || `${SERVICE_KEY}:atlas-hmac-tracking-v1`;
+const RATE_SECRET = Deno.env.get('ATLAS_RATE_SECRET') || `${SERVICE_KEY}:atlas-rate-limit-v1`;
+const ALLOWED = (Deno.env.get('ATLAS_ALLOWED_ORIGINS') || 'https://projets-1-02-atlas-store.vercel.app').split(',').map(s => s.trim()).filter(Boolean);
 const encoder = new TextEncoder();
 
 function json(data: unknown,status=200,origin='') {
