@@ -1,17 +1,17 @@
 # Déploiement — projet Atlas indépendant
 
-**Statut** : guide, pas compte-rendu d'un déploiement réalisé. Le 23/11/2026, aucun nouveau Supabase Atlas ni secrets n'a été configuré dans cette conversation. Ne pas modifier la base Supabase d'un autre produit ni le déploiement Vercel Nova Studio.
+**Statut au 23/11/2026 :** projet Supabase Atlas dédié `bdcayckhcoejmmphivhp` créé dans l'organisation Olivia (coût annoncé à la création : 0 $/mois). Migration et seed exécutés, fonction `atlas-api` déployée, clé publique renseignée dans le frontend sur `main`, Vercel signalé comme déployé. **L'administrateur initial, les notifications et les tests end-to-end réels restent à configurer/vérifier.** Ne jamais modifier les services d'autres produits.
 
 ## 1. Branche Git et hébergement
 
 - Dépôt : `newton20com-ui/projets-1`, **ne travailler que dans** `KAINOVA-TRAINING/02-atlas-store/`.
-- Branche de préparation : `feature/02-atlas-store-pilot`. `main` reste la démonstration validée.
+- Branche **`main`** connectée à Vercel ; tous les fichiers sont dans le dossier d'origine du Projet 02. Le laboratoire local reste accessible via `?lab=1`.
 - Vercel : projet **Atlas Store** existant ou nouvel import distinct du Projet 01, `Root Directory=KAINOVA-TRAINING/02-atlas-store`, preset Other, framework sans compilation, output directory par défaut.
-- Tester d'abord sur un déploiement de **preview de branche** ; ne fusionner sur `main` qu'après l'acceptation réelle.
+- Le code est déjà sur `main`. Ne pas déclarer le pilote commercialement validé sans tests complets d'administration et de commande.
 
 ## 2. Créer un projet Supabase ATLAS indépendant
 
-Le propriétaire doit choisir son organisation Supabase et confirmer les coûts avant la création (un compte peut utiliser plusieurs organisations et chaque organisation peut avoir des coûts différents). On ne réutilise jamais le projet nommé « Alibaba- » sans demande explicite.
+**Création effectuée :** projet Atlas dans l'organisation « Olivia », région `eu-central-1`, à l'adresse `https://bdcayckhcoejmmphivhp.supabase.co`. Coût annoncé pour le nouveau projet au moment de la création : 0 $/mois. Le projet « Alibaba- » n'a pas été réutilisé.
 
 Supabase Atlas comprend : PostgreSQL, Auth, Storage, Edge Functions. Une fois le projet créé, inspecter la région, la disponibilité et le tarif. Conserver l'ID du projet dans le registre privé, pas dans les secrets du dépôt.
 
@@ -21,7 +21,7 @@ Supabase Atlas comprend : PostgreSQL, Auth, Storage, Edge Functions. Une fois le
 2. Sauvegarder son état si des données existent.
 3. Appliquer `supabase/migrations/20261123133000_atlas_pilot.sql` **sur Atlas uniquement** via Supabase CLI / SQL Editor / MCP selon autorisations ; vérifier tables, RLS, grants, fonction de commande et bucket.
 4. Lancer les vérifications Supabase Security Advisor et corriger toute alerte grave.
-5. Exécuter `supabase/seed.sql` pour importer 16 **produits fictifs non publiés**. Le script source `supabase/generate-seed.mjs` permet de le régénérer ; l'import n'écrase pas les références préexistantes.
+5. `supabase/seed.sql` a importé 16 références fictives en brouillon ; la migration additionnelle `supabase/migrations/20261123165000_atlas_test_catalog.sql` les a activées **comme références [TEST]** pour les essais serveur, sans ventes réelles. Le script source `supabase/generate-seed.mjs` permet de le régénérer ; l'import n'écrase pas les références préexistantes.
 6. Inviter un premier utilisateur via Supabase Auth / Users, **sans publier son mot de passe**, puis l'autoriser administrateur en insérant son UUID dans `public.atlas_admins` depuis une session privilégiée Supabase. Ne pas implémenter de création d'administrateur publique.
 
 ## 4. Déployer l'API
@@ -44,7 +44,7 @@ Configurer un secret de récupération/adaptation à long terme dans un coffre p
 
 ## 5. Relier le frontend
 
-Dans `js/config.js`, renseigner **uniquement** l'URL Supabase publique (`https://<ref>.supabase.co`) et une clé publishable `sb_publishable_*`. Cette clé est conçue pour le navigateur ; la clé service-role ne doit jamais être insérée dans le code public.
+Dans `js/config.js`, l'URL publique du projet Atlas et une clé publishable `sb_publishable_*` sont **déjà renseignées**. Seule une clé publique peut être committée. La clé service-role reste une variable de la fonction Supabase, jamais du navigateur.
 
 Le frontend fonctionne sans ces valeurs en mode démonstration. Il refuse une vente fictive. Avec elles, le catalogue est chargé depuis l'API ; une erreur réseau n'entraîne pas l'affichage trompeur d'un stock démo.
 
@@ -61,7 +61,7 @@ Dans Supabase Auth / URL Configuration, enregistrer l'URL de l'admin `/admin.htm
 - Réaliser une commande **de test** sans encaisser de paiement, puis la supprimer/archiver selon procédure avant exploitation.
 - Ajouter des mentions de confidentialité et conditions de vente vérifiées pour le contexte commercial réel.
 
-Consigner les preuves dans `docs/TEST_REPORT.md`. **Pas de fusion en `main` tant que les principaux scénarios ne passent pas réellement.**
+Consigner les preuves dans `docs/TEST_REPORT.md`. **Pas de mise en vente commerciale tant que les principaux scénarios ne passent pas réellement.**
 
 ## 7. Retour arrière
 
@@ -71,3 +71,14 @@ Si la nouvelle UI provoque un problème, restaurer le commit précédent du **se
 ## Mode laboratoire actuellement déployable depuis `main`
 
 Tant que `js/config.js` ne contient pas d'URL publique et de clé publishable Supabase Atlas, la boutique et `/admin.html` démarrent en **mode laboratoire local**, sans login. Ce mode permet de tester les produits, panier, commandes de test, suivi, catégories, paramètres, variantes et stock sur le même navigateur. Aucun backend, aucun serveur de commandes, aucune protection des données commerciales. **Ne pas utiliser de données client réelles.** Ne pas activer Supabase sans projet Atlas isolé et validation de la sécurité.
+
+
+## Avancement réel de l'intégration (23/11/2026)
+
+- Projet Supabase isolé : `bdcayckhcoejmmphivhp`, statut `ACTIVE_HEALTHY`.
+- Migration SQL initiale et seed exécutés ; 16 articles [TEST] activés, 4 catégories, 31 variantes initiales.
+- Edge Function `atlas-api` déployée, version 3, domaine Vercel Atlas autorisé côté CORS ; une correction du préflight OPTIONS a été apportée après observation d'erreurs 403 dans les journaux.
+- Site connecté via URL et clé **publishable** ; absence de clé service-role dans le frontend.
+- Invitation du premier compte administrateur et inscription dans `atlas_admins` **non effectuées**. Les autres comptes n'obtiennent aucune autorisation admin.
+- Les paiements en ligne, notifications email transactionnelles et vrais tests d'achats commerciaux **ne sont pas activés**.
+- Les tests serveur des commandes concurrentes, du suivi, des images et de l'authentification doivent être exécutés sur le site avec un administrateur autorisé. N'utilisez que des coordonnées fictives pour les commandes [TEST].
