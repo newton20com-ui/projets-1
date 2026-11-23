@@ -2,7 +2,7 @@
 
 **Date de rédaction : 23 novembre 2026.**
 
-Ce document distingue explicitement les tests exécutés sur les fichiers locaux des scénarios nécessitant une base et un déploiement qui ne sont **pas encore configurés**. Aucun scénario marqué « non exécuté » n'est considéré comme validé.
+Ce document distingue les tests exécutés localement des tests d'intégration non encore vérifiés sur une interface réelle. **Le projet Supabase Atlas dédié est désormais créé ; les migrations, le seed et l'Edge Function ont été déployés.** L'existence de ces services ne prouve pas la réussite de tous les parcours. Aucun scénario « non exécuté » n'est considéré comme validé.
 
 ## Vérifications exécutées localement
 
@@ -26,7 +26,7 @@ Ce document distingue explicitement les tests exécutés sur les fichiers locaux
 | 2. Catégorie/produit/image/variantes créés puis publiés | Non exécuté contre Supabase réel |
 | 3. Changement prix/stock visible côté public | Non exécuté |
 | 4. Archivage sans casser commandes passées | Non exécuté |
-| 5. Recherche, filtres et tri sur catalogue SQL | Non exécuté (les tests historiques couvrent les données locales) |
+| 5. Recherche, filtres et tri sur catalogue SQL | Les requêtes de base et les produits sont présents ; parcours complet navigateur non exécuté |
 | 6. Variantes distinctes dans panier | Tests unitaires historiques réussis, pas encore connecté à la base |
 | 7. Refus de montant falsifié, quantités invalides, stock insuffisant | Non exécuté contre SQL réel |
 | 8. Commande enregistrée avec total serveur exact | Non exécuté |
@@ -44,7 +44,7 @@ Ce document distingue explicitement les tests exécutés sur les fichiers locaux
 
 - Branche isolée de développement : `feature/02-atlas-store-pilot`.
 - Projet 01 inchangé.
-- Migration PostgreSQL, programme d'import et API créés **mais non déployés** sur un Supabase Atlas.
+- Migration PostgreSQL, import des 16 produits fictifs puis migration d'activation [TEST] **appliqués sur Supabase Atlas dédié**. API `atlas-api` déployée en mode JWT vérifié sur les routes administrateur. Les tests utilisateur Auth, commandes et photos ne sont pas encore exécutés de bout en bout.
 - Checkout volontairement indisponible si `js/config.js` ne contient pas l'URL et la clé publique d'un projet Atlas dédié.
 - Aucun utilisateur ni commande réelle créés.
 
@@ -71,3 +71,14 @@ Ce document distingue explicitement les tests exécutés sur les fichiers locaux
 - Vérifications de syntaxe JavaScript : réalisées sur tous les modules.
 - **Non validé** : parcours manuel sur Vercel, responsive via navigateur réel, authentification et transactions serveur Supabase, email et paiement réel.
 - Statut : administration et commandes de TEST enregistrées localement ; aucune donnée client réelle ne doit être renseignée.
+
+
+## Avancement réel de l'intégration (23/11/2026)
+
+- Projet Supabase isolé : `bdcayckhcoejmmphivhp`, statut `ACTIVE_HEALTHY`.
+- Migration SQL initiale et seed exécutés ; 16 articles [TEST] activés, 4 catégories, 31 variantes initiales.
+- Edge Function `atlas-api` déployée, version 3, domaine Vercel Atlas autorisé côté CORS ; une correction du préflight OPTIONS a été apportée après observation d'erreurs 403 dans les journaux.
+- Site connecté via URL et clé **publishable** ; absence de clé service-role dans le frontend.
+- Invitation du premier compte administrateur et inscription dans `atlas_admins` **non effectuées**. Les autres comptes n'obtiennent aucune autorisation admin.
+- Les paiements en ligne, notifications email transactionnelles et vrais tests d'achats commerciaux **ne sont pas activés**.
+- Les tests serveur des commandes concurrentes, du suivi, des images et de l'authentification doivent être exécutés sur le site avec un administrateur autorisé. N'utilisez que des coordonnées fictives pour les commandes [TEST].
