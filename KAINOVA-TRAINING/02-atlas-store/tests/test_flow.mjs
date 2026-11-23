@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 const data=new Map();
+globalThis.location={search:'?lab=1'};
 globalThis.localStorage={getItem:k=>data.has(k)?data.get(k):null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)};
 globalThis.document={dispatchEvent(){}};
 globalThis.CustomEvent=class{constructor(type){this.type=type}};
