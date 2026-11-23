@@ -5,7 +5,7 @@ const el = (id)=>({id,innerHTML:'',hidden:true,textContent:'',classList:{add(){}
 const root=el('admin-root'),logout=el('admin-logout'),toast=el('admin-toast');
 globalThis.document={querySelector:s=>({'#admin-root':root,'#admin-logout':logout,'#admin-toast':toast}[s]||null),addEventListener(type,cb){docListeners[type]=cb}};
 globalThis.window={addEventListener(){}};
-globalThis.location={hash:'',pathname:'/admin.html',origin:'https://atlas.test'};
+globalThis.location={hash:'',pathname:'/admin.html',origin:'https://atlas.test',search:'?lab=1'};
 await import('../js/admin.js');
 await new Promise(resolve=>setImmediate(resolve));
 assert.match(root.innerHTML,/MODE LABORATOIRE/);
