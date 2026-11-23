@@ -1,6 +1,6 @@
 # Kainova Training — Notre recette de vibe coding
 
-**État : méthode évolutive, version 0.1 — 23 novembre 2026.**
+**État : méthode évolutive, version 0.2 — 23 novembre 2026.**
 
 ## Objectif
 
@@ -24,6 +24,22 @@ Cette méthode n'est **pas figée**. Après chaque projet, nous y ajoutons les m
 
 **Critère pratique :** la direction visuelle doit être choisie intentionnellement pour chaque produit. Ne pas transformer le style du projet précédent en modèle automatique.
 
+## Règle validée n° 2 — Utiliser des médias authentiques ou photoréalistes, pas seulement du code graphique
+
+**Origine : Projet 02 — Atlas Store.**
+
+**Constat :** une interface peut être bien conçue mais perdre sa crédibilité quand les produits, lieux ou personnes sont représentés uniquement par des dessins SVG fabriqués en code.
+
+**Méthode :**
+1. Identifier dès le cadrage les visuels essentiels : produits, photos de contexte, portraits, scènes d'usage, illustrations de données.
+2. Pour les objets réels, chercher en priorité des **photographies réelles pertinentes et de qualité** (constructeur avec autorisation, banques compatibles, photos fournies par le client). Sinon, créer des rendus **photoréalistes générés** clairement identifiés comme tels quand cela convient.
+3. Utiliser des icônes et SVG pour les éléments d'interface, la signalétique, les schémas et les illustrations intentionnelles — pas comme substitut automatique à toute photo.
+4. Vérifier **l'exactitude du sujet**, les droits d'usage, les marques visibles, la qualité, le cadrage, l'optimisation et la cohérence mobile.
+5. Éviter les images distantes instables ; privilégier des fichiers optimisés et hébergés localement quand c'est possible, avec un repli fonctionnel.
+6. Ne jamais présenter une photo illustrative, un rendu généré ou une maquette comme la preuve d'un produit commercialisé, de son stock ou de ses caractéristiques.
+
+**Limite observée sur Atlas Store :** les photos sont indicatives de produits fictifs et certaines sont servies par un CDN externe ; elles ne constituent pas des fiches photographiques exactes de références vendues.
+
 ## Boucle de travail provisoire
 
 **Besoin → références/recherche → choix de direction → construction par l'IA → tests → retour utilisateur → recherches et corrections → validation → leçon consignée.**
@@ -35,7 +51,7 @@ Cette boucle pourra évoluer avec les prochains projets. Aucun projet n'est déc
 | Projet | Observation | Méthode conservée | Statut |
 | --- | --- | --- | --- |
 | 01 — Nova Studio | La recherche visuelle multi-sources a contribué à une V2 davantage appréciée que la première proposition. | Règle n° 1 : recherche et analyse de références multiples, direction artistique adaptée, itération sur retour réel. | Validée comme pratique |
-| 02 et suivants | À documenter à mesure de l'avancement. | À enrichir après chaque projet. | En attente |
+| 02 — Atlas Store | Le rendu exclusivement SVG manquait de réalisme pour une boutique de produits. | Règle n° 2 : photos réelles ou rendus photoréalistes pertinents, droits vérifiés, exactitude et repli. | Validée comme pratique |\n| 03 et suivants | À documenter à mesure de l'avancement. | À enrichir après chaque projet. | En attente |
 
 ## Discipline de mise à jour
 
