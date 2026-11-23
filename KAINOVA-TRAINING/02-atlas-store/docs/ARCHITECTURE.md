@@ -35,7 +35,7 @@ L'administrateur possède un compte Supabase Auth. Sa possession d'un token ne s
 
 ## Stratégie des environnements
 
-- `main` : site V2 actuel, non modifié jusqu'à preuve du pilote.
+- `main` : contient désormais le code V2 et les ajouts pilotes dans **le même dossier Atlas** ; le fonctionnement commercial reste désactivé tant que Supabase Atlas n'est pas configuré.
 - `feature/02-atlas-store-pilot` : code et configuration documentée.
 - Supabase **Atlas indépendant** : projet nouveau (id et coût à confirmer par le propriétaire).
 - Idéalement un second projet test Supabase ; si indisponible, utiliser des références fictives et commandes factices **dans le projet Atlas isolé**, nettoyer avant la mise en ligne commerciale. Ne pas utiliser la base d'une autre application.
