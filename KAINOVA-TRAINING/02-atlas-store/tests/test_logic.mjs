@@ -11,7 +11,7 @@ const { getCart, cartCount, cartTotal, addItem, setQuantity, removeItem, clearCa
 const checks=[];
 function test(name,fn){try{fn();checks.push([name,'PASS']);console.log('✓ '+name)}catch(error){checks.push([name,'FAIL']);console.error('✗ '+name+': '+error.message)}}
 test('16 produits et 4 catégories',()=>{ assert.equal(PRODUCTS.length,16);assert.equal(CATEGORIES.length,4);assert.equal(new Set(PRODUCTS.map(p=>p.id)).size,16); });
-test('Toutes les images locales déclarées',()=>assert.ok(PRODUCTS.every(p=>p.images.length>=2&&p.images.every(src=>src.startsWith('assets/images/')))));
+test('Photos de fournisseurs connus et repli local',()=>assert.ok(PRODUCTS.every(p=>p.images.length>=2 && /^https:\/\/(images\.unsplash\.com|images\.pexels\.com)\//.test(p.images[0]) && p.images[1].startsWith('assets/images/') && p.images[1].endsWith('.svg'))));
 test('Deux produits intégralement indisponibles',()=>assert.ok(PRODUCTS.filter(p=>!isAvailable(p)).length>=2));
 test('Recherche accents et casse',()=>{assert.equal(normalizeSearch('ÉCOUTEURS'),'ecouteurs');assert.equal(queryProducts({search:'éCoUtEUrS'}).length,2);assert.equal(queryProducts({search:'ecouteurs'}).length,2)});
 test('Filtre catégorie séparément',()=>assert.equal(queryProducts({category:'audio'}).length,4));
