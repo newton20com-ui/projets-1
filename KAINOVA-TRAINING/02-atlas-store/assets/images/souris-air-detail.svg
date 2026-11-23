@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 840" role="img" aria-label="Illustration originale de souris-air">
+<defs>
+ <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#424751"/><stop offset=".42" stop-color="#252931"/><stop offset="1" stop-color="#0b0d14"/></linearGradient>
+ <linearGradient id="silver" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffefb"/><stop offset=".44" stop-color="#d8d7d1"/><stop offset="1" stop-color="#a8a7a8"/></linearGradient>
+ <linearGradient id="screen" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#595879"/><stop offset=".52" stop-color="#a7b9cc"/><stop offset="1" stop-color="#434b63"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ffffff" stop-opacity=".85"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+ <filter id="sh"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<rect width="840" height="840" rx="20" fill="#f3eef6"/>
+<circle cx="680" cy="185" r="330" fill="url(#glow)" opacity=".75"/>
+<circle cx="190" cy="628" r="178" fill="#e1ada2" opacity=".16"/>
+<ellipse cx="421" cy="677" rx="248" ry="38" fill="#17181d" opacity=".17" filter="url(#sh)"/>
+<g transform="translate(420 420) scale(.85) translate(-420 -420) translate(0 -15)"><g transform="rotate(-19 425 420)"><path d="M421 195 C533 195 582 293 582 414 V498 C582 607 504 660 420 660 C338 660 261 607 261 498 V414 C261 295 309 195 421 195Z" fill="url(#dark)"/><path d="M420 217 C521 217 554 309 554 412 V495 C554 593 492 631 420 631 C348 631 289 593 289 495 V414 C289 315 321 217 420 217Z" fill="url(#silver)"/><path d="M421 219 V379" stroke="#8d949c" stroke-width="9"/><rect x="403" y="286" width="36" height="76" rx="18" fill="#888b98"/></g></g>
+<g opacity=".38" stroke="#514e55" stroke-width="2"><path d="M46 48h25M59 36v25"/><path d="M771 779h25M783 767v25"/></g>
+<text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#454550" opacity=".6">ATLAS / OBJECTS</text>
+<text x="784" y="786" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#454550" opacity=".55">02 — 02</text>
+</svg>

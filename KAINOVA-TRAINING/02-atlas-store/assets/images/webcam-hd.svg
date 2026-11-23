@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 840" role="img" aria-label="Illustration originale de webcam-hd">
+<defs>
+ <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#424751"/><stop offset=".42" stop-color="#252931"/><stop offset="1" stop-color="#0b0d14"/></linearGradient>
+ <linearGradient id="silver" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffefb"/><stop offset=".44" stop-color="#d8d7d1"/><stop offset="1" stop-color="#a8a7a8"/></linearGradient>
+ <linearGradient id="screen" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#595879"/><stop offset=".52" stop-color="#a7b9cc"/><stop offset="1" stop-color="#434b63"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ffffff" stop-opacity=".85"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+ <filter id="sh"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<rect width="840" height="840" rx="20" fill="#d9e3e9"/>
+<circle cx="165" cy="170" r="330" fill="url(#glow)" opacity=".75"/>
+<circle cx="674" cy="660" r="178" fill="#ffffff" opacity=".16"/>
+<ellipse cx="421" cy="677" rx="248" ry="38" fill="#17181d" opacity=".17" filter="url(#sh)"/>
+<g transform="translate(420 420) scale(1) translate(-420 -420) translate(0 0)"><g transform="rotate(-9 420 427)"><rect x="219" y="291" width="404" height="237" rx="96" fill="url(#dark)"/><rect x="244" y="309" width="358" height="191" rx="80" fill="url(#silver)"/><circle cx="422" cy="407" r="84" fill="#333744"/><circle cx="422" cy="407" r="67" fill="#536579"/><circle cx="422" cy="407" r="48" fill="#1b2b3d"/><circle cx="406" cy="389" r="19" fill="#8194a8" opacity=".8"/><path d="M387 526 V592 L326 617 H521 L461 590 V526" fill="url(#dark)"/><rect x="310" y="608" width="225" height="35" rx="17" fill="#454b56"/></g></g>
+<g opacity=".38" stroke="#514e55" stroke-width="2"><path d="M46 48h25M59 36v25"/><path d="M771 779h25M783 767v25"/></g>
+<text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#454550" opacity=".6">ATLAS / OBJECTS</text>
+<text x="784" y="786" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#454550" opacity=".55">01 — 02</text>
+</svg>

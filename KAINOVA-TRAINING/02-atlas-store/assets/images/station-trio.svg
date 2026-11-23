@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 840" role="img" aria-label="Illustration originale de station-trio">
+<defs>
+ <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#424751"/><stop offset=".42" stop-color="#252931"/><stop offset="1" stop-color="#0b0d14"/></linearGradient>
+ <linearGradient id="silver" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffefb"/><stop offset=".44" stop-color="#d8d7d1"/><stop offset="1" stop-color="#a8a7a8"/></linearGradient>
+ <linearGradient id="screen" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#595879"/><stop offset=".52" stop-color="#a7b9cc"/><stop offset="1" stop-color="#434b63"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ffffff" stop-opacity=".85"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+ <filter id="sh"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<rect width="840" height="840" rx="20" fill="#e4e1d9"/>
+<circle cx="165" cy="170" r="330" fill="url(#glow)" opacity=".75"/>
+<circle cx="674" cy="660" r="178" fill="#ffffff" opacity=".16"/>
+<ellipse cx="421" cy="677" rx="248" ry="38" fill="#17181d" opacity=".17" filter="url(#sh)"/>
+<g transform="translate(420 420) scale(1) translate(-420 -420) translate(0 0)"><ellipse cx="428" cy="583" rx="262" ry="54" fill="#222630" opacity=".16"/><path d="M214 529 L507 477 L663 544 L383 610 Z" fill="url(#dark)"/><path d="M214 529 L383 610 L383 644 L213 565Z" fill="#6e7178"/><path d="M383 610 L663 544 L663 580 L383 644Z" fill="#242832"/><rect x="335" y="307" width="182" height="250" rx="37" fill="url(#silver)" stroke="#44454c" stroke-width="10"/><rect x="355" y="331" width="141" height="201" rx="26" fill="#292d37"/><circle cx="427" cy="411" r="44" fill="none" stroke="#bdbfc1" stroke-width="9"/><path d="M555 477 V297" stroke="#252833" stroke-width="28" stroke-linecap="round"/><circle cx="555" cy="290" r="75" fill="url(#dark)"/><circle cx="555" cy="290" r="50" fill="none" stroke="#b5b8bd" stroke-width="9"/></g>
+<g opacity=".38" stroke="#514e55" stroke-width="2"><path d="M46 48h25M59 36v25"/><path d="M771 779h25M783 767v25"/></g>
+<text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#454550" opacity=".6">ATLAS / OBJECTS</text>
+<text x="784" y="786" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#454550" opacity=".55">01 — 02</text>
+</svg>

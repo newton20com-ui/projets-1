@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 840" role="img" aria-label="Illustration originale de filaires-usbc">
+<defs>
+ <linearGradient id="dark" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#424751"/><stop offset=".42" stop-color="#252931"/><stop offset="1" stop-color="#0b0d14"/></linearGradient>
+ <linearGradient id="silver" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffefb"/><stop offset=".44" stop-color="#d8d7d1"/><stop offset="1" stop-color="#a8a7a8"/></linearGradient>
+ <linearGradient id="screen" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#595879"/><stop offset=".52" stop-color="#a7b9cc"/><stop offset="1" stop-color="#434b63"/></linearGradient>
+ <radialGradient id="glow"><stop stop-color="#ffffff" stop-opacity=".85"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+ <filter id="sh"><feGaussianBlur stdDeviation="24"/></filter>
+</defs>
+<rect width="840" height="840" rx="20" fill="#f0edf8"/>
+<circle cx="680" cy="185" r="330" fill="url(#glow)" opacity=".75"/>
+<circle cx="190" cy="628" r="178" fill="#e1ada2" opacity=".16"/>
+<ellipse cx="421" cy="677" rx="248" ry="38" fill="#17181d" opacity=".17" filter="url(#sh)"/>
+<g transform="translate(420 420) scale(.85) translate(-420 -420) translate(0 -15)"><path d="M312 285 C240 310 217 394 289 471 C334 518 349 555 334 612" fill="none" stroke="#252933" stroke-width="17" stroke-linecap="round"/><path d="M528 285 C603 315 629 396 554 478 C512 525 495 556 510 615" fill="none" stroke="#252933" stroke-width="17" stroke-linecap="round"/><g transform="rotate(-28 307 291)"><rect x="251" y="229" width="116" height="136" rx="54" fill="url(#dark)"/><rect x="267" y="245" width="84" height="106" rx="42" fill="url(#silver)"/></g><g transform="rotate(26 530 292)"><rect x="473" y="228" width="116" height="136" rx="54" fill="url(#dark)"/><rect x="489" y="243" width="84" height="104" rx="42" fill="url(#silver)"/></g><path d="M332 608 Q414 667 510 608" fill="none" stroke="#252933" stroke-width="11" stroke-linecap="round"/></g>
+<g opacity=".38" stroke="#514e55" stroke-width="2"><path d="M46 48h25M59 36v25"/><path d="M771 779h25M783 767v25"/></g>
+<text x="57" y="786" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="4" fill="#454550" opacity=".6">ATLAS / OBJECTS</text>
+<text x="784" y="786" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#454550" opacity=".55">02 — 02</text>
+</svg>
