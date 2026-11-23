@@ -5,9 +5,9 @@
 ## 1. Branche Git et hébergement
 
 - Dépôt : `newton20com-ui/projets-1`, **ne travailler que dans** `KAINOVA-TRAINING/02-atlas-store/`.
-- Branche de préparation : `feature/02-atlas-store-pilot`. `main` reste la démonstration validée.
+- Code du pilote intégré dans le dossier Atlas sur **`main`** à la demande du propriétaire. Le backend est désactivé tant que `js/config.js` n'est pas renseigné.
 - Vercel : projet **Atlas Store** existant ou nouvel import distinct du Projet 01, `Root Directory=KAINOVA-TRAINING/02-atlas-store`, preset Other, framework sans compilation, output directory par défaut.
-- Tester d'abord sur un déploiement de **preview de branche** ; ne fusionner sur `main` qu'après l'acceptation réelle.
+- Le dossier sur `main` conserve le **mode démonstration** tant que le backend est désactivé. Tester la connexion au nouveau Supabase Atlas dans un environnement de préproduction distinct avant d'activer les commandes publiques.
 
 ## 2. Créer un projet Supabase ATLAS indépendant
 
@@ -61,7 +61,7 @@ Dans Supabase Auth / URL Configuration, enregistrer l'URL de l'admin `/admin.htm
 - Réaliser une commande **de test** sans encaisser de paiement, puis la supprimer/archiver selon procédure avant exploitation.
 - Ajouter des mentions de confidentialité et conditions de vente vérifiées pour le contexte commercial réel.
 
-Consigner les preuves dans `docs/TEST_REPORT.md`. **Pas de fusion en `main` tant que les principaux scénarios ne passent pas réellement.**
+Consigner les preuves dans `docs/TEST_REPORT.md`. **Ne pas activer la vente réelle tant que les principaux scénarios ne passent pas réellement.**
 
 ## 7. Retour arrière
 
