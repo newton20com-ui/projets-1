@@ -6,7 +6,7 @@
 
 Atlas Store est une boutique d'accessoires technologiques interactive conçue pour le deuxième projet du parcours Kainova Training (30 projets). L'objectif est de comprendre comment une interface e-commerce fonctionne **entièrement côté navigateur**, sans backend, base de données, compte utilisateur ni paiement.
 
-L'application contient **16 produits fictifs**, dans quatre catégories : audio, charge, smartphone et bureau. Chaque produit possède deux illustrations vectorielles originales, réalisées pour ce projet et stockées localement.
+L'application contient **16 produits fictifs**, dans quatre catégories : audio, charge, smartphone et bureau. Chaque produit affiche désormais **une photographie illustrative** (Unsplash ou Pexels) et **une vue conceptuelle SVG**. En cas d'erreur de chargement, une image SVG locale de secours apparaît. Ces photographies ne représentent pas des modèles Atlas réels.
 
 ## Technologies
 
@@ -15,7 +15,7 @@ L'application contient **16 produits fictifs**, dans quatre catégories : audio,
 - **JavaScript natif (modules ES)** — données structurées, recherche, filtres, tri, navigation, fiche produit, variantes et panier.
 - **localStorage** — sauvegarde locale du panier lorsqu'elle est disponible.
 
-Aucun framework, gestionnaire de paquets, CDN, service externe ou API n'est nécessaire.
+Aucun framework, gestionnaire de paquets ni API externe n'est nécessaire. Les nouvelles photographies sont servies par **les CDN d'Unsplash et de Pexels** : une connexion Internet est nécessaire pour les charger. Les SVG de secours sont locaux.
 
 ## Architecture
 
@@ -31,7 +31,7 @@ KAINOVA-TRAINING/02-atlas-store/
 │   └── app.js                  # Vues, navigation et interactions DOM
 ├── assets/
 │   ├── favicon.svg
-│   └── images/                  # 32 illustrations SVG originales + repli
+│   └── images/                  # 32 SVG conceptuels originaux + repli
 ├── tests/
 │   ├── test_logic.mjs          # Tests exécutable Node (sans dépendances)
 │   └── test_site.py            # Scénarios navigateur Playwright (facultatif)
@@ -117,7 +117,7 @@ Les scénarios manuels importants : recherche accent-insensible, filtres cumulé
 
 ## Limites explicites
 
-- Tous les produits, prix, caractéristiques et stocks sont inventés ; les illustrations sont originales mais ne représentent pas de modèles réels.
+- Tous les produits, prix, caractéristiques et stocks sont inventés ; les photographies sont indicatives et les SVG sont des concepts ; aucun visuel ne doit être interprété comme un modèle Atlas effectivement commercialisé.
 - Pas d'achat, de paiement, de livraison, de compte, de suivi, de commande WhatsApp ni de backend.
 - Pas de synchronisation entre navigateurs ou appareils.
 - Pas de garantie de conservation : l'utilisateur peut effacer son navigateur et le stockage peut être désactivé.
@@ -126,4 +126,32 @@ Les scénarios manuels importants : recherche accent-insensible, filtres cumulé
 
 ## Inspirations de conception (principes, pas copies)
 
-Exploration des références sur Dribbble, Behance, Land-book et Baymard Institute pour la hiérarchie visuelle, la présentation des images, les états des variantes, les filtres et les parcours utilisateur. Les SVG du projet sont originaux et ne reprennent pas les images de ces sites.
+Exploration des références sur Dribbble, Behance, Land-book et Baymard Institute pour la hiérarchie visuelle, la présentation des images, les états des variantes, les filtres et les parcours utilisateur. Les SVG du projet sont originaux. Les photographies proviennent de banques d'images distinctes.
+
+
+## Images réelles d'illustration : sources et limites
+
+La première version utilisait uniquement des images vectorielles produites par du code. Elle reste disponible dans Git, mais la version actuelle privilégie **des photographies représentatives** : un véritable objet visible au premier regard, plutôt qu'un dessin SVG. Les objets **Atlas restent fictifs**, et une photo peut présenter un autre modèle, une autre couleur, ou une marque réelle. Les caractéristiques du catalogue ne doivent pas être attribuées aux objets photographiés.
+
+Les photos sont issues de [Unsplash](https://unsplash.com/license) et de [Pexels](https://www.pexels.com/license/), dont les licences autorisent leur utilisation dans une démonstration. Les images sont chargées par URL de photo identifiée (pas une recherche aléatoire). Pour une boutique commerciale, il faudrait **les photos exactes des références vendues** et vérifier les droits des marques visibles.
+
+| Article Atlas (fictif) | Source de la photographie d'illustration |
+| --- | --- |
+| Neo Pods | [Unsplash — écouteurs en boîtier](https://unsplash.com/photos/black-earbuds-and-their-charging-case-ZrL-XNzAmag) |
+| Studio Wave | [Unsplash — casque audio](https://unsplash.com/photos/a-person-wearing-a-black-headphone-oEs7aefonI0) |
+| Pulse Mini | [Unsplash — enceinte](https://unsplash.com/photos/person-holding-black-and-silver-jbl-portable-speaker-YcEISwbqzsw) |
+| Linea C | [Pexels — écouteurs filaires](https://www.pexels.com/photo/black-earphones-on-a-desk-6251/) |
+| Volt 35 | [Pexels — adaptateur secteur](https://www.pexels.com/photo/white-adapter-on-a-blue-surface-4097207/) |
+| Loop C | [Pexels — câble USB-C](https://www.pexels.com/photo/close-up-photo-of-cord-3921633/) |
+| Power 10K | [Pexels — batterie externe](https://www.pexels.com/photo/portable-power-bank-on-minimalist-tech-desk-38648941/) |
+| Trio Dock | [Unsplash — accessoires tech](https://unsplash.com/photos/a-keyboard-mouse-controller-and-other-items-on-a-table-qeICalRUfMU) |
+| Frame Case | [Pexels — coque de téléphone](https://www.pexels.com/photo/close-up-shot-of-a-clear-phone-case-7360460/) |
+| Fold Stand | [Pexels — téléphone sur support](https://www.pexels.com/photo/close-up-of-a-smartphone-on-a-cobra-phone-stand-standing-on-a-desk-16017173/) |
+| Clear Edge | [Pexels — verre de protection](https://www.pexels.com/photo/a-hand-holding-a-tempered-glass-of-samsung-galaxy-s9-7742506/) |
+| Orbit Grip | [Pexels — ambiance smartphone](https://www.pexels.com/photo/a-person-holding-a-smartphone-11025652/) ; **ne montre pas l'anneau grip exact** |
+| Type Mini | [Pexels — clavier](https://www.pexels.com/photo/focus-photography-of-keyboard-824243/) |
+| Air Mouse | [Unsplash — souris sans fil](https://unsplash.com/s/photos/wireless-mouse) |
+| Link Six | [Pexels — hub USB-C](https://www.pexels.com/photo/portable-hard-disk-with-wire-20076003/) |
+| Vision HD | [Pexels — bureau avec webcam](https://www.pexels.com/photo/a-laptop-and-monitor-with-a-webcam-in-a-workspace-10864867/) |
+
+**Limites :** les URL pointent vers des hébergeurs externes et peuvent échouer hors ligne ; dans ce cas une illustration locale apparaît. Les rendus photographiques doivent être contrôlés manuellement sur Vercel. L'hébergement de fichiers optimisés localement serait préférable pour un usage commercial. Les variantes de couleur restent des données fictives et ne modifient pas la photographie.
