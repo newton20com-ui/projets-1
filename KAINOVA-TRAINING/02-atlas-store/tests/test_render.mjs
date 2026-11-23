@@ -16,7 +16,7 @@ globalThis.document = {
 };
 globalThis.CustomEvent = class {constructor(type){this.type=type}};
 globalThis.window = {addEventListener(type,fn){events[type]=fn},scrollTo(){}};
-globalThis.location={hash:'#/'};
+globalThis.location={hash:'#/',search:'?lab=1'};
 globalThis.localStorage={getItem:()=>null,setItem(){}};
 await import('../js/app.js');
 const render=(route)=>{location.hash='#'+route;events.hashchange()};
