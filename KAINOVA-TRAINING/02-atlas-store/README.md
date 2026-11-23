@@ -1,31 +1,28 @@
 # Atlas Store — Kainova Training / Projet 02
 
-**Évolution pilote en préparation, distincte de la démonstration V2 déjà publiée.** Ce dossier contient le frontend original (conservé), des interfaces de commande et d'administration, une API Supabase Edge Function, des migrations PostgreSQL, des tests et une documentation d'exploitation.
+**Statut au 23 novembre 2026 : backend Supabase dédié créé et API déployée ; boutique GitHub/Vercel reliée au serveur.** La création du premier compte administrateur et les vérifications de commande en conditions réelles restent à effectuer avant toute utilisation commerciale.
 
-**État au 23 novembre 2026 :** code préparé sur la branche `feature/02-atlas-store-pilot`. **Aucune base Atlas indépendante n'a encore été créée ou migrée ; aucune commande réelle n'a été enregistrée ou testée.** L'existence du code ne signifie pas que la boutique est opérationnelle. La branche `main` reste le site démonstratif actuellement déployé. N'activez pas le checkout auprès de clients avant tous les tests de `docs/TEST_REPORT.md`.
+- Site public : https://projets-1-02-atlas-store.vercel.app/
+- Administration sécurisée : https://projets-1-02-atlas-store.vercel.app/admin.html (compte Supabase autorisé nécessaire)
+- Laboratoire indépendant, sans authentification ni serveur : https://projets-1-02-atlas-store.vercel.app/admin.html?lab=1
+- Boutique laboratoire : https://projets-1-02-atlas-store.vercel.app/?lab=1#/catalogue
+- Supabase dédié : projet `bdcayckhcoejmmphivhp` ; organisation « Olivia » ; distinct de toute autre application.
 
+Les **16 références initiales** sont étiquetées `[TEST]` et rendues commandables pour les essais techniques, avec faux stocks et prix. Les commandes en mode serveur, si confirmées, sont enregistrées réellement dans PostgreSQL ; **elles ne constituent ni ventes commerciales, ni paiements, ni obligations de livrer**. N'utilisez que des coordonnées fictives et aucune information privée pour les essais.
 
-## Mode laboratoire utilisable immédiatement (sans Supabase)
+## Deux modes à ne pas confondre
 
-**Administration accessible** : ouvrez `/admin.html` sur le site Atlas Store (lien « Administration » dans la navigation). Aucune connexion n'est demandée **en laboratoire**. C'est volontaire : il ne s'agit PAS d'un espace privé sécurisé, et aucun changement n'affecte les autres visiteurs ou appareils.
+**Boutique connectée (URL habituelle).** Le catalogue, les variantes et les stocks proviennent de Supabase ; le panier reste local puis le serveur revalide la commande et décrémente les stocks si la création réussit. Une commande ne doit jamais être annoncée comme validée sans réponse positive du serveur. L'administration exige une connexion Supabase Auth et une entrée dans la table `atlas_admins`.
 
-Le laboratoire est maintenant **interactif et persistant dans ce navigateur** :
+**Laboratoire local (`?lab=1`).** Le catalogue, les commandes et l'administration fonctionnent uniquement dans `localStorage`. Il ne nécessite pas de compte et permet de tout explorer sans toucher à PostgreSQL. Ce mode **n'est pas sécurisé** et ne doit jamais contenir de données réelles. Les modifications effectuées dans ce mode ne se retrouvent pas dans l'administration serveur.
 
-1. Ouvrez l'administration, onglet **Produits** : créez ou modifiez un article, son prix, ses images, ses variantes et ses stocks ; archivez-le ou publiez-le en test.
-2. Modifiez **Catégories** et **Paramètres** (options de retrait/livraison et frais de livraison de test).
-3. Ouvrez la **Boutique**, ajoutez un produit disponible au panier, sélectionnez ses variantes, affichez le récapitulatif et cliquez **Passer une commande de test**.
-4. Utilisez un **nom et un contact fictifs** (ex. « Client Test », « 000000000 »). La commande est enregistrée dans le localStorage de **ce même navigateur**, avec une référence `AT-TEST-...` et un lien de suivi local.
-5. Retournez sur `/admin.html` (même navigateur et même domaine) → **Commandes** : consultez les lignes, modifiez l'état, ajoutez des notes et exportez un CSV. L'annulation restaure le stock local.
-6. Depuis le tableau de bord, le bouton **Réinitialiser toutes les données de test** efface les essais locaux après confirmation.
+## Activer le premier administrateur
 
-### Limites impératives du laboratoire
+1. Dans le projet [Supabase Atlas — Auth / Users](https://supabase.com/dashboard/project/bdcayckhcoejmmphivhp/auth/users), utilisez **Add user → Send invitation** avec votre adresse email personnelle, ou créez votre utilisateur de façon sécurisée depuis le tableau de bord. **Ne partagez jamais de mot de passe dans ce dépôt ni dans le chat.**
+2. Après création, le propriétaire doit autoriser explicitement cet utilisateur dans `public.atlas_admins` en utilisant son UUID depuis Supabase (aucune promotion automatique des comptes inscrits).
+3. Connectez-vous à `/admin.html` avec ce compte. Les autres utilisateurs authentifiés restent refusés par l'API.
 
-- Ce n'est **pas** une boutique commerciale opérationnelle. Ni authentification, ni base de données distante, ni emails transactionnels, ni paiement, ni commandes reçues par un serveur.
-- Les valeurs modifiées, produits ajoutés, images téléversées et informations des commandes sont stockés **dans le navigateur** ; ils ne se synchronisent pas entre appareils, et disparaîtront si l'on supprime les données du site. Certaines navigations privées bloquent le stockage.
-- Comme l'administration de test est librement accessible à tous, **n'y saisissez jamais de vraie donnée client ou de données confidentielles**. Les produits initiaux sont fictifs et les photos indicatives.
-- Les prix et stocks sont recalculés dans le code local, ce qui suffit à apprendre/tester le parcours, mais **ne protège pas contre la manipulation du navigateur ou les commandes concurrentes de plusieurs appareils**.
-- Les vrais comptes administrateurs, commandes commerciales, emails, sauvegardes centralisées et contrôles serveur exigent un **projet Supabase Atlas dédié** configuré et testé. Il est volontairement absent ; les valeurs publiques `js/config.js` restent vides.
-- Dès qu'un backend réel sera configuré, la boutique passera au mode serveur : l'administration demandera une authentification et seules les références réellement publiées pourront être commandées.
+L'invitation, la vérification des emails et les tests complets d'authentification restent à réaliser. Les notifications par email de commande requièrent aussi une configuration de fournisseur dédiée.
 
 ## Objectif produit
 
@@ -52,23 +49,23 @@ Boutique d'accessoires technologiques en FCFA, destinée à un commerçant pilot
 | `js/cart.js`, `js/storage.js` | Panier et `localStorage`, validation locale conservée |
 | `admin.html`, `css/admin.css`, `js/admin.js` | Interface privée administrateur (identité, catalogue, commandes, catégories, paramètres, images) |
 | `supabase/migrations/` | Tables, contraintes, RLS, functions transactionnelles |
-| `supabase/seed.sql`, `supabase/generate-seed.mjs` | Import reproductible des **16 produits fictifs en brouillon** |
+| `supabase/seed.sql`, `supabase/generate-seed.mjs` | Import reproductible des **16 produits fictifs initialement en brouillon** |
 | `supabase/functions/atlas-api/` | API serveur, commandes et vérification admin |
 | `docs/` | Architecture, données, déploiement, sécurité, opérations, pédagogie et résultats de test |
 
-## Mode démonstration / mode connecté
+## Comportement serveur et données tests
 
-`js/config.js` contient deux champs publics vides par défaut. Tant qu'ils restent vides, l'ancien catalogue fictif fonctionne localement ; **aucune commande ne peut être transmise au serveur**. Si un projet Supabase Atlas dédié est configuré, le frontend charge le catalogue via l'API. **En cas de panne réseau, il n'affiche pas les faux stocks de démo comme si les commandes étaient réelles.**
+`js/config.js` contient exclusivement l'URL du projet Supabase Atlas et sa **clé publique publishable**. La clé privilégiée du serveur ne se trouve pas dans GitHub ni dans le navigateur.
 
-Le panier reste dans le navigateur. Après chargement du catalogue live, il est revalidé contre les produits et variantes disponibles et les anciennes entrées incompatibles sont éliminées. Il n'y a pas de migration automatique des données personnelles d'un appareil à un autre.
+Le panier est local au navigateur ; lors du checkout, l'API recalcule les prix, valide la disponibilité et transmet l'opération à une fonction SQL transactionnelle. Les liens de suivi ont des jetons non prévisibles et une expiration. En cas d'échec réseau, aucune réussite de commande ne doit être annoncée.
 
-Les **16 produits de démonstration** sont importés comme `draft` et `is_demo=true`. Une vraie boutique pilote doit créer ou vérifier des références authentiques et les publier avec `is_demo=false`. Seuls les produits publiés et non fictifs peuvent être commandés.
+Les 16 produits fictifs ont d'abord été importés en brouillon par `supabase/seed.sql`, puis **activés explicitement comme références [TEST]** dans la base Atlas créée le 23 novembre 2026. Cette activation est un choix pédagogique du propriétaire et n'est **pas** une preuve que les références et leurs stocks sont réels. Les images sont illustratives.
 
 ## Lancer localement
 
 Pour consulter la démo : ouvrir `index.html` avec un serveur statique local (par exemple l'extension Live Server dans VS Code, sans compilation). Un navigateur bloquant `file://` pour les modules ES doit passer par un serveur statique.
 
-Pour l'administration : `/admin.html` sur le domaine du projet, **après** la configuration Supabase et l'invitation d'un compte autorisé.
+Pour l'administration : `/admin.html` nécessite un utilisateur Supabase autorisé ; `/admin.html?lab=1` ouvre un laboratoire local sans identifiants.
 
 Les tests de logique existants s'exécutent avec Node.js :
 
@@ -80,17 +77,17 @@ node tests/test_api_mock.mjs
 node supabase/generate-seed.mjs
 ```
 
-Ces tests ne remplacent pas les tests réels contre une base SQL et le navigateur. **Aucune transaction réelle n'a été testée tant que Supabase Atlas reste non configuré.**
+Ces tests ne remplacent pas les tests réels contre une base SQL et le navigateur. **La migration Supabase et l'API sont déployées, mais un parcours de commande complet via un vrai navigateur et un utilisateur administrateur n'a pas encore été vérifié.**
 
 ## Déploiement Vercel
 
-Un **nouveau projet Vercel** doit pointer sur le sous-dossier `KAINOVA-TRAINING/02-atlas-store` du dépôt commun, framework `Other`, sans commande de compilation. Ne jamais remplacer le projet Vercel Nova Studio. La branche stable `main` ne doit être mise à jour qu'après la validation de la branche de travail et de la base Atlas. Les secrets API restent dans Supabase, jamais dans `js/config.js`.
+Le projet Vercel Atlas existant utilise le dossier `KAINOVA-TRAINING/02-atlas-store` sur `main`. La publication du Projet 01 Nova Studio reste indépendante. Les secrets d'API restent dans Supabase, jamais dans `js/config.js`.
 
 Pour la procédure complète : [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Pour les incidents : [docs/OPERATIONS.md](docs/OPERATIONS.md).
 
 ## Limites et garde-fous
 
-- **Sans base Atlas dédiée, tout le frontend reste un exercice**, pas une boutique recevant des commandes.
+- **La base Atlas dédiée existe**, mais les 16 références actuellement publiées sont des articles de TEST, pas des articles commerciaux. L'utilisation réelle exige des produits exacts et des tests de bout en bout.
 - Les photos de démonstration provenant de banques d'images ne prouvent pas l'existence du modèle, de sa marque ou de son stock.
 - Aucune transaction de carte ni de mobile money ; les paiements sont hors ligne, statut initial `unpaid`.
 - Aucun administrateur inscrit automatiquement. Un opérateur doit être invité par le propriétaire Supabase et explicitement autorisé.
