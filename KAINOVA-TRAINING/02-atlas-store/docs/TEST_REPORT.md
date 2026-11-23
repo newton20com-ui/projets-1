@@ -42,7 +42,7 @@ Ce document distingue explicitement les tests exécutés sur les fichiers locaux
 
 ## État de livraison
 
-- Branche isolée de développement : `feature/02-atlas-store-pilot`.
+- Code du pilote intégré sur `main` dans le dossier `KAINOVA-TRAINING/02-atlas-store/` ; l'API et le backend ne sont pas activés.
 - Projet 01 inchangé.
 - Migration PostgreSQL, programme d'import et API créés **mais non déployés** sur un Supabase Atlas.
 - Checkout volontairement indisponible si `js/config.js` ne contient pas l'URL et la clé publique d'un projet Atlas dédié.
