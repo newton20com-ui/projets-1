@@ -1,8 +1,8 @@
 # Atlas Store — Kainova Training / Projet 02
 
-**Évolution pilote en préparation, distincte de la démonstration V2 déjà publiée.** Ce dossier contient le frontend original (conservé), des interfaces de commande et d'administration, une API Supabase Edge Function, des migrations PostgreSQL, des tests et une documentation d'exploitation.
+**Évolution pilote intégrée au code sur `main`, mais backend non configuré.** Ce dossier contient le frontend original (conservé), des interfaces de commande et d'administration, une API Supabase Edge Function, des migrations PostgreSQL, des tests et une documentation d'exploitation.
 
-**État au 23 novembre 2026 :** code préparé sur la branche `feature/02-atlas-store-pilot`. **Aucune base Atlas indépendante n'a encore été créée ou migrée ; aucune commande réelle n'a été enregistrée ou testée.** L'existence du code ne signifie pas que la boutique est opérationnelle. La branche `main` reste le site démonstratif actuellement déployé. N'activez pas le checkout auprès de clients avant tous les tests de `docs/TEST_REPORT.md`.
+**État au 23 novembre 2026 :** cette évolution est présente dans `KAINOVA-TRAINING/02-atlas-store/` sur la branche `main`, comme demandé. **Aucune base Atlas indépendante n'a encore été créée ou migrée ; aucune commande réelle n'a été enregistrée ni testée.** Comme les valeurs de `js/config.js` sont vides, le site continue à fonctionner en démonstration. L'existence du code ne signifie pas que la boutique est opérationnelle. Ne pas ouvrir le checkout aux clients avant tous les tests de `docs/TEST_REPORT.md`.
 
 ## Objectif produit
 
@@ -61,7 +61,7 @@ Ces tests ne remplacent pas les tests réels contre une base SQL et le navigateu
 
 ## Déploiement Vercel
 
-Un **nouveau projet Vercel** doit pointer sur le sous-dossier `KAINOVA-TRAINING/02-atlas-store` du dépôt commun, framework `Other`, sans commande de compilation. Ne jamais remplacer le projet Vercel Nova Studio. La branche stable `main` ne doit être mise à jour qu'après la validation de la branche de travail et de la base Atlas. Les secrets API restent dans Supabase, jamais dans `js/config.js`.
+Un **nouveau projet Vercel** doit pointer sur le sous-dossier `KAINOVA-TRAINING/02-atlas-store` du dépôt commun, framework `Other`, sans commande de compilation. Ne jamais remplacer le projet Vercel Nova Studio. Le code du pilote est déjà sur `main` ; son activation commerciale reste interdite tant que la base, l'authentification et les tests d'intégration ne sont pas validés. Les secrets API restent dans Supabase, jamais dans `js/config.js`.
 
 Pour la procédure complète : [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Pour les incidents : [docs/OPERATIONS.md](docs/OPERATIONS.md).
 
