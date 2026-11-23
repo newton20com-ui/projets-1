@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { PRODUCTS, CATEGORIES, findProduct, isAvailable, MAX_PER_LINE } from '../js/products.js';
 import { queryProducts, normalizeSearch } from '../js/catalog.js';
-import { normalizeCart } from '../js/storage.js';
+import { normalizeCart, loadCart, saveCart } from '../js/storage.js';
 // Simulate only the minimal browser APIs used by cart.js.
 const saved = new Map();
 globalThis.localStorage = { getItem:k=>saved.get(k)??null, setItem:(k,v)=>saved.set(k,v) };
@@ -25,6 +25,7 @@ test('Recherche sans résultat',()=>assert.equal(queryProducts({search:'xyz-intr
 test('Fiche produit et finitions',()=>assert.equal(findProduct('neo-pods').variants.length,3));
 test('Ajout + deux variantes = lignes distinctes',()=>{assert.equal(addItem('neo-pods','noir',2).ok,true);assert.equal(addItem('neo-pods','blanc',1).ok,true);assert.equal(getCart().length,2);assert.equal(cartCount(),3)});
 test('Montant 55 500 FCFA',()=>assert.equal(cartTotal(),55500));
+test('Panier stocké et restaurable',()=>{const persisted=loadCart();assert.equal(persisted.length,2);assert.equal(persisted.reduce((n,l)=>n+l.quantity,0),3)});
 test('Augmenter quantité',()=>{assert.equal(setQuantity('neo-pods','noir',3).ok,true);assert.equal(cartTotal(),74000)});
 test('Quantités invalides refusées',()=>{for(const n of [0,-1,2.4,NaN,Infinity,999])assert.equal(setQuantity('neo-pods','noir',n).ok,false)});
 test('Limite de stock et de 10 articles',()=>assert.equal(addItem('neo-pods','noir',6).ok,false));
@@ -34,6 +35,8 @@ test('Normalisation localStorage malformée',()=>assert.deepEqual(normalizeCart(
 test('Normalisation exclut produit inconnu',()=>assert.deepEqual(normalizeCart([{productId:'foo',variantId:'noir',quantity:1}]),[]));
 test('Normalisation limite quantité au stock',()=>{const x=normalizeCart([{productId:'neo-pods',variantId:'noir',quantity:999}]);assert.equal(x[0].quantity,8);const y=normalizeCart([{productId:'neo-pods',variantId:'noir',quantity:8},{productId:'neo-pods',variantId:'noir',quantity:3}]);assert.equal(y[0].quantity,8)});
 test('Supprimer variante sans toucher à autre',()=>{removeItem('neo-pods','blanc');assert.equal(getCart().length,1)});
-test('Vider panier',()=>{clearCart();assert.equal(cartCount(),0);assert.equal(cartTotal(),0)});
+test('Vider panier',()=>{clearCart();assert.equal(cartCount(),0);assert.equal(cartTotal(),0);assert.deepEqual(loadCart(),[])});
+test('Storage corrompu récupéré sans crash',()=>{saved.set('atlas-store-demo-cart-v1','{json cassé');assert.deepEqual(loadCart(),[])});
+test('Storage inaccessible ne bloque pas la logique',()=>{const previous=globalThis.localStorage;globalThis.localStorage={getItem(){throw Error('interdit')},setItem(){throw Error('interdit')}};assert.deepEqual(loadCart(),[]);assert.deepEqual(saveCart([{productId:'neo-pods',variantId:'noir',quantity:2}]),[{productId:'neo-pods',variantId:'noir',quantity:2}]);globalThis.localStorage=previous});
 console.log(`${checks.filter(c=>c[1]==='PASS').length}/${checks.length} tests réussis.`);
 if(checks.some(c=>c[1]!=='PASS'))process.exit(1);
