@@ -44,3 +44,4 @@ export function removeItem(productId, variantId) {
   commit();
 }
 export function clearCart() { lines = []; commit(); }
+export function refreshCartFromStorage(){lines=saveCart(loadCart());document.dispatchEvent(new CustomEvent('atlas:cart-change'))}
