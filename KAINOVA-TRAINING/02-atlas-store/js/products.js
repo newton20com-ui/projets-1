@@ -1,12 +1,13 @@
 /* Atlas Store — données de démonstration fictives, entièrement locales. */
-export const CATEGORIES = Object.freeze([
+export const CATEGORIES = [
   { id: 'audio', label: 'Audio & écouteurs', short: 'Audio', description: 'Le son qui vous accompagne.', art: 'studio-wave' },
   { id: 'charge', label: 'Charge & câbles', short: 'Charge', description: 'L’énergie toujours à portée.', art: 'power-10k' },
   { id: 'telephone', label: 'Pour smartphone', short: 'Smartphone', description: 'Les détails qui changent tout.', art: 'coque-magsafe' },
   { id: 'informatique', label: 'Bureau & ordinateur', short: 'Bureau', description: 'Votre espace, mieux équipé.', art: 'clavier-mini' },
-]);
-
-// Photos d'illustration provenant d'Unsplash et Pexels. Les modèles Atlas sont fictifs.
+ ];
+// Photographies réelles d'illustration (Unsplash / Pexels), modèles Atlas fictifs.
+// Liens vers des fichiers identifiés, jamais vers une sélection aléatoire.
+// En cas d'échec réseau, app.js remplace l'image par le SVG local.
 export const PHOTO_URLS = Object.freeze({
   'neo-pods': 'https://images.unsplash.com/photo-1753973169894-ba4ebd59aff7?auto=format&fit=crop&w=1050&q=82',
   'studio-wave': 'https://images.unsplash.com/photo-1669666227952-46fb71f14afa?auto=format&fit=crop&w=1050&q=82',
@@ -25,9 +26,9 @@ export const PHOTO_URLS = Object.freeze({
   'hub-six': 'https://images.pexels.com/photos/20076003/pexels-photo-20076003.jpeg?auto=compress&cs=tinysrgb&w=1050',
   'webcam-hd': 'https://images.pexels.com/photos/10864867/pexels-photo-10864867.jpeg?auto=compress&cs=tinysrgb&w=1050',
 });
-const images = id => [PHOTO_URLS[id], 'assets/images/' + id + '-detail.svg'];
+const images = id => [PHOTO_URLS[id], `assets/images/${id}-detail.svg`];
 const variation = (id, name, stock, color, extraPrice = 0) => ({ id, name, stock, color, extraPrice });
-export const PRODUCTS = Object.freeze([
+export const PRODUCTS = [
   { id: 'neo-pods', name: 'Neo Pods', sub: 'Écouteurs Bluetooth', category: 'audio', price: 18500, badge: 'Sélection Atlas', featured: true, tagline: 'Le rythme, partout.', description: 'Des écouteurs sans fil compacts, imaginés pour accompagner les moments du quotidien. Modèle de démonstration.', features: ['Connexion sans fil Bluetooth', 'Boîtier de rangement compact', 'Commandes tactiles', 'Recharge USB-C'], keywords: ['bluetooth','tws','écouteurs','sans fil','musique'], images: images('neo-pods'), variants: [variation('noir','Noir graphite',8,'#252832'),variation('blanc','Blanc craie',6,'#e7e4df'),variation('argile','Argile',0,'#d28e72')] },
   { id: 'studio-wave', name: 'Studio Wave', sub: 'Casque audio sans fil', category: 'audio', price: 32500, featured: true, tagline: 'L’écoute, en grand.', description: 'Un casque enveloppant au style minimal et aux coussinets généreux, pour une écoute confortable.', features: ['Arceau ajustable', 'Coussinets confortables', 'Recharge USB-C', 'Commandes sur le casque'], keywords: ['casque','bluetooth','headphones','musique'], images: images('studio-wave'), variants: [variation('noir','Noir minéral',7,'#252832'),variation('sable','Sable clair',5,'#d8d0be')] },
   { id: 'pulse-mini', name: 'Pulse Mini', sub: 'Enceinte nomade', category: 'audio', price: 17900, badge: 'Format compact', featured: false, tagline: 'Un son qui suit le mouvement.', description: 'Une petite enceinte portable de démonstration, pensée pour les petites pièces et les sorties.', features: ['Format portable', 'Connexion Bluetooth', 'Commandes intégrées', 'Recharge USB-C'], keywords: ['enceinte','haut parleur','speaker','bluetooth','audio'], images: images('pulse-mini'), variants: [variation('charbon','Charbon',10,'#30353c'),variation('corail','Corail',0,'#e77e5d')] },
@@ -44,7 +45,7 @@ export const PRODUCTS = Object.freeze([
   { id: 'souris-air', name: 'Air Mouse', sub: 'Souris sans fil', category: 'informatique', price: 12500, featured: false, tagline: 'Le geste juste.', description: 'Une souris ergonomique de démonstration aux lignes simples.', features: ['Connexion sans fil', 'Molette centrale', 'Design ambidextre (concept)', 'Format compact'], keywords: ['souris','mouse','bureau','ordinateur','wireless'], images: images('souris-air'), variants: [variation('perle','Perle',6,'#e9e4df'),variation('noir','Noir',6,'#252832')] },
   { id: 'hub-six', name: 'Link Six', sub: 'Hub USB-C 6 ports', category: 'informatique', price: 21900, featured: false, tagline: 'Tout connecter.', description: 'Un concentrateur USB-C de démonstration pour illustrer les accessoires informatiques multiports.', features: ['Six ports (concept)', 'Entrée USB-C', 'Boîtier aluminium (concept)', 'Format transportable'], keywords: ['hub','usb','ordinateur','adaptateur','ports'], images: images('hub-six'), variants: [variation('argent','Argent',9,'#c7c9cb'),variation('graphite','Graphite',4,'#282d36')] },
   { id: 'webcam-hd', name: 'Vision HD', sub: 'Webcam Full HD', category: 'informatique', price: 26500, featured: false, tagline: 'Soyez présent, vraiment.', description: 'Webcam de démonstration pour les appels vidéo et le télétravail.', features: ['Résolution Full HD (concept)', 'Fixation sur écran', 'Connexion USB (concept)', 'Objectif frontal'], keywords: ['webcam','camera','visio','ordinateur','video'], images: images('webcam-hd'), variants: [variation('noir','Noir',5,'#252832'),variation('argent','Argent',0,'#c9c9c6')] },
-]);
+];
 export const findProduct = id => PRODUCTS.find(p => p.id === id);
 export const findVariant = (product, id) => product?.variants.find(v => v.id === id);
 export const isAvailable = product => product?.variants.some(v => v.stock > 0) ?? false;

@@ -346,7 +346,7 @@ svg{display:block}
 @media (max-width:380px){.container{width:calc(100% - 30px)}.home-hero h1{font-size:49px}.hero-actions .btn{font-size:11px;padding:11px 13px}.hero-composition__panel{min-height:345px}.category-card{min-height:225px}.category-card h3{font-size:17px}.category-card p{font-size:9px}.product-card h3{font-size:14px}.product-card__price{font-size:11px}.catalog-toolbar{flex-wrap:wrap}.page-hero h1{font-size:57px}.purchase-controls{gap:8px}.add-cart-btn{font-size:10px;padding:8px 6px}.variant-option{padding:9px 10px;font-size:10px}.variant-option.is-selected{padding:8px 9px}.end-cta h2{font-size:35px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* Atlas Store — images photographiques, composition et contrastes adaptés. */
+/* Projet 02 — adaptation des compositions à de véritables photographies. */
 .hero-composition__panel{background:#f0e9e2}
 .hero-composition__panel>img{width:100%;height:100%;top:0;left:0;object-fit:cover;mix-blend-mode:normal;transform:none}
 .hero-composition__panel::after{pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.48),transparent 30%,rgba(255,255,255,.32));border:0;border-radius:0;width:100%;height:100%;left:0;top:0}
@@ -356,3 +356,31 @@ svg{display:block}
 .category-card__bottom p{color:#282d36}
 @media(max-width:980px){.category-card img{width:100%;height:100%;left:0;top:0}}
 @media(max-width:600px){.category-card img{width:100%;height:100%;left:0;top:0}}
+
+/* ATLAS PILOTE — ajouts légers : on conserve l'identité de la boutique existante. */
+.pilot-notice{padding:1rem 1.25rem;border:1px solid #ded6cc;background:#fff6ed;border-radius:12px;line-height:1.55}
+.pilot-notice--warning{border-color:#e8ae9a;background:#fff0e9}
+.pilot-notice--success{background:#edfaed;border-color:#b8d9bd}
+.pilot-notice a{color:#a63c21;text-decoration:underline}
+.checkout-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr);gap:clamp(1.2rem,4vw,4rem);margin-top:2rem;align-items:start}
+.checkout-form{background:#fff;border:1px solid #e8e3db;border-radius:20px;padding:clamp(1.15rem,3vw,2.5rem);display:grid;gap:1.15rem}
+.checkout-form .field{display:grid;gap:.45rem}
+.checkout-form label{font-size:.88rem;font-weight:650}
+.checkout-form input:not([type=radio]):not([type=checkbox]),.checkout-form textarea,.checkout-form select{width:100%;background:#fcfaf7;border:1px solid #b5ada4;border-radius:10px;padding:.85rem 1rem;font:inherit;color:#232126;min-width:0}
+.checkout-form input:focus-visible,.checkout-form textarea:focus-visible,.checkout-form select:focus-visible{outline:3px solid #f27b42;outline-offset:2px}
+.checkout-form textarea{min-height:94px;resize:vertical}
+.checkout-form fieldset{border:1px solid #e4ded5;border-radius:12px;padding:1rem;display:grid;gap:.7rem}
+.checkout-form legend{font-weight:750;padding:0 .4rem}
+.checkout-form .choice{display:flex;align-items:start;gap:.65rem;font-size:.96rem}
+.checkout-form .choice input{flex:0 0 auto;margin-top:.25rem}
+.checkout-form .choice span{flex:1}
+.checkout-form .checkout-submit{width:100%;justify-content:center}
+.checkout-form [aria-live]{min-height:1rem;font-weight:650;color:#a12d24}
+.checkout-summary{border:1px solid #e8e3db;background:#fff;border-radius:20px;padding:1.4rem;position:sticky;top:110px}
+.checkout-summary h2{font-size:1.25rem;margin:0 0 1rem}
+.checkout-summary__item{padding:.65rem 0;border-bottom:1px solid #eee7df;display:flex;align-items:start;justify-content:space-between;gap:1rem;font-size:.88rem}
+.checkout-summary__total{font-size:1.2rem;display:flex;justify-content:space-between;margin:1rem 0 0}
+.status-history{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1rem}
+.status-history li{padding:1rem;border-left:4px solid #fa7442;background:#fff;border-radius:0 8px 8px 0}
+.status-history time{display:block;color:#706a65;font-size:.82rem;margin-top:.3rem}
+@media(max-width:800px){.checkout-layout{grid-template-columns:1fr}.checkout-summary{position:static}}
