@@ -247,8 +247,9 @@ async function audit(actor:string,action:string,resource_type:string,resource_id
 }
 Deno.serve(async(req:Request)=>{
   const origin=req.headers.get('origin')||'';
-  if(origin&&!ALLOWED.includes(origin))return json({error:'Origine non autorisée'},403,'');
+  // Always answer preflight; browser access-control headers are only returned for the allowlisted origin.
   if(req.method==='OPTIONS')return json({},204,origin);
+  if(origin&&!ALLOWED.includes(origin))return json({error:'Origine non autorisée'},403,'');
   try{
     if(!SUPABASE_URL||!SERVICE_KEY)fail(503,'Service non configuré');
     const url=new URL(req.url);const path=url.pathname.replace(/^.*\/atlas-api/,'')||'/';
