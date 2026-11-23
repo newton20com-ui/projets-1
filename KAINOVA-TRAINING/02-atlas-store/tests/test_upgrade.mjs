@@ -11,7 +11,7 @@ const api=read('supabase/functions/atlas-api/index.ts');
 check('Ancien catalogue de 16 objets préservé',()=>assert.equal(PRODUCTS.length,16));
 check('Quatre catégories préservées',()=>assert.equal(CATEGORIES.length,4));
 check('Deux espaces indépendants',()=>{assert.ok(existsSync(join(root,'index.html')));assert.ok(existsSync(join(root,'admin.html')))});
-check('Configuration publique sans secret actif',()=>{const cfg=read('js/config.js');assert.match(cfg,/publishableKey:\s*''/);assert.doesNotMatch(cfg,/sb_secret_|eyJ[a-zA-Z0-9_-]{50}/)});
+check('Configuration publique sans secret actif',()=>{const cfg=read('js/config.js');assert.match(cfg,/publishableKey:\s*'sb_publishable_/);assert.match(cfg,/supabaseUrl:\s*'https:\/\//);assert.doesNotMatch(cfg,/sb_secret_|eyJ[a-zA-Z0-9_-]{50}/)});
 check('Catalogue connecté avec laboratoire local distinct',()=>{const s=read('js/live-catalog.js');assert.match(s,/PRODUCTS\.splice\(0/);assert.match(s,/isDemo:!isLive/);assert.match(s,/error=null/)});
 check('Checkout via API serveur ou stockage test explicite',()=>{const s=read('js/app.js');assert.match(s,/createOrder\(data\)/);assert.match(s,/result\?\.reference/);assert.match(s,/isLive/)});
 check('Administration serveur authentifiée, laboratoire local distingué',()=>{const s=read('js/admin.js');assert.match(s,/adminRequest\('\/session'\)/);assert.match(s,/getSession\(\)/)});
