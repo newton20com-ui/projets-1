@@ -1,6 +1,7 @@
-import { ATLAS_CONFIG, isLive } from './config.js';
+import { ATLAS_CONFIG, isLive as backendReady } from './config.js';
 import { labCatalog,labCheckout,labTracking,labAdmin } from './lab-store.js';
-export { isLive };
+// ?lab=1 keeps the local teaching sandbox available without server credentials.
+export const isLive = backendReady && new URLSearchParams(globalThis.location?.search || '').get('lab') !== '1';
 const API_TIMEOUT_MS = 12000;
 const URL_BASE = () => `${ATLAS_CONFIG.supabaseUrl.replace(/\/$/,'')}/functions/v1/atlas-api`;
 function formError(res, payload) { return new Error(payload?.error || `Erreur réseau ${res.status}`); }
