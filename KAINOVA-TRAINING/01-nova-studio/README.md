@@ -1,80 +1,48 @@
-# Nova Studio — Site vitrine (Projet 01)
+# Nova Studio — Kainova Training / Projet 01
 
-**Projet pédagogique fictif — Kainova Training.** Site vitrine monopage pour une agence imaginaire de services numériques, destiné aux entrepreneurs, indépendants et petites entreprises francophones.
+Site vitrine d'une agence **fictive** de services numériques, entièrement reconstruit dans une direction graphique éditoriale et expressive. Il s'agit d'un exercice du parcours **Kainova Training (30 projets)**, non d'une véritable agence commerciale.
 
-## Ce que contient le site
+## Le site
 
-- En-tête avec logo, navigation par ancres et menu mobile.
-- Présentation principale et deux appels à l'action.
-- Quatre services : sites web, identité visuelle, UI/UX et conseil numérique.
-- Quatre avantages concrets.
-- Trois réalisations illustratives **explicitement fictives** (Luma, Soma et Nord).
-- Processus de collaboration en quatre étapes.
-- Contact via lien `mailto:` et pied de page.
+Une page en français, avec : en-tête et menu mobile, hero, présentation, quatre expertises, trois réalisations fictives, quatre engagements, quatre étapes de réalisation, contact et pied de page.
 
-## Technologies
+Les réalisations **Maison Forma**, **Pulpe** et **Claro** sont des concepts inventés pour la démonstration. Aucune donnée client, aucun chiffre commercial ni témoignage réel ne sont présentés. L'adresse `bonjour@nova-studio.example` est volontairement fictive : le bouton `mailto:` ouvre un logiciel de messagerie mais ne permet pas d'envoyer un email à un vrai destinataire.
 
-- **HTML5** : structure, contenus, titres, sections, liens et descriptions accessibles.
-- **CSS3** : couleurs, typographie, grilles, styles des composants, adaptation des écrans et mouvements discrets.
-- **JavaScript natif** : uniquement le menu mobile (ouvrir, fermer, fermer après sélection ou avec Échap).
+## Direction artistique
 
-Aucun framework, aucune bibliothèque, aucune dépendance, aucune base de données et aucun service externe.
+Références de recherche : approches éditoriales et typographiques visibles sur les pages de concepts de studio créatif de Dribbble (notamment **M@KA / One Collective Design** et **CHAMPS / Jeremy Baraka**), ainsi que la galerie de modèles Aura. Il s'agit d'une création originale, non d'une reproduction de maquette.
 
-## Structure
+Palette : bleu électrique `#2538F5`, orange corail `#FF6448`, fond ivoire `#FFFBF3`, noir `#151512` et accent citron `#F6EF78`. Typographie système sans serif forte et accents italiques Georgia. Aucun framework ni police téléchargée. Les trois visuels du portfolio sont des **SVG originaux créés pour cette démonstration**, hébergés localement.
 
-```text
-01-nova-studio/
-├── index.html             # Page unique et contenu
-├── style.css              # Design et responsive
-├── script.js              # Menu mobile, sans dépendance
-├── assets/
-│   ├── favicon.svg        # Icône dans l'onglet
-│   ├── projet-luma.svg    # Visuel concept architecture
-│   ├── projet-soma.svg    # Visuel concept soins
-│   └── projet-nord.svg    # Visuel concept conseil
-└── README.md              # Documentation
-```
+## Technologies et architecture
 
-## Navigation
+- `index.html` : contenu, hiérarchie des titres, liens et structure sémantique.
+- `style.css` : identité, mise en page, couleurs, animations simples, responsive, focus clavier et adaptation aux préférences de réduction de mouvement.
+- `script.js` : ouverture/fermeture du menu mobile, synchronisation des attributs ARIA, fermeture avec Échap, clic sur lien ou clic extérieur, mise à jour du copyright.
+- `assets/favicon.svg` : icône Nova Studio.
+- `assets/projet-luma.svg` : visuel du concept Maison Forma.
+- `assets/projet-soma.svg` : visuel du concept Pulpe.
+- `assets/projet-nord.svg` : visuel du concept Claro.
 
-Les liens `#services`, `#approche`, `#realisations`, `#processus` et `#contact` mènent aux sections portant ces identifiants. Aucun chargement de page n'est nécessaire. Sur petit écran (900 px et moins), un bouton ouvre la navigation ; son état est exposé aux technologies d'assistance grâce à `aria-expanded`. Le menu se referme après la sélection d'un lien, en cliquant à l'extérieur ou en appuyant sur `Échap`.
+Aucune dépendance, aucune installation npm, aucune API, aucun backend, aucune base de données.
 
-Le bouton de contact utilise une adresse fictive `bonjour@nova-studio.example`. Il **ouvre bien le logiciel de messagerie** de la personne (si une application d'email est configurée), mais **aucun message ne peut être livré** à cette adresse de démonstration. Il faut la remplacer par une véritable adresse professionnelle avant une mise en production commerciale. Aucun formulaire n'est simulé.
+## Navigation et responsive
 
-## Responsive et accessibilité
+Les liens pointent vers les `id` des sections de la même page. Le menu horizontal desktop est remplacé sous 900 px par un menu mobile, piloté par le script natif. Le contenu s'adapte en grilles et colonnes selon la largeur disponible. Le site propose une liaison « Aller au contenu » et des focus visibles. `prefers-reduced-motion` supprime les transitions et le défilement fluide.
 
-La mise en page utilise CSS Grid et Flexbox, avec des ajustements à 1180, 900, 620 et 370 px. Les grilles se réorganisent progressivement, le menu devient compact, et les typographies / espacements s'adaptent. Les éléments essentiels sont présents dans le HTML. L'option système « réduire les animations » est prise en charge.
+## Lancement local
 
-Sont également prévus : un lien d'accès rapide au contenu, des zones sémantiques (`header`, `nav`, `main`, `section`, `footer`), des textes alternatifs pour les projets et des états de focus visibles au clavier.
+Décompresser le dossier et ouvrir directement `index.html` dans un navigateur récent. Le site fonctionne avec le protocole `file://` ou un serveur statique standard, sans étape de construction.
 
-## Lancer localement
+## Déploiement Vercel
 
-1. Ouvrir le dossier `01-nova-studio`.
-2. Double-cliquer sur `index.html` pour l'ouvrir dans un navigateur moderne.
-3. Facultatif : pour prévisualiser via un serveur statique, exécuter `python -m http.server 8000` depuis ce dossier, puis ouvrir `http://localhost:8000`.
+1. Importer le dépôt GitHub `newton20com-ui/projets-1` dans Vercel.
+2. Régler **Root Directory** sur `KAINOVA-TRAINING/01-nova-studio`.
+3. Sélectionner le preset **Other** (HTML/CSS/JS). Ne pas ajouter de commande de build ni de variable d'environnement.
+4. Déployer la branche `main`.
 
-L'application ne demande ni installation, ni `npm install`, ni serveur applicatif.
+Chaque futur projet d'entraînement peut avoir son propre projet Vercel, relié au même dépôt, mais avec un autre dossier racine.
 
-## Déploiement sur un hébergement statique
+## Limites intentionnelles
 
-**GitHub Pages** : placer le contenu du dossier dans un dépôt GitHub (ou une branche / dossier configuré pour Pages), puis activer Pages dans *Settings → Pages*. Les chemins relatifs fonctionnent également sous une URL de sous-répertoire.
-
-**Netlify** : déposer directement le dossier `01-nova-studio` sur Netlify Drop, ou relier un dépôt et utiliser ce dossier comme répertoire de publication. Pas de commande de build.
-
-**Vercel** : importer un dépôt et configurer `01-nova-studio` comme *Root Directory* pour un projet statique, sans build ni framework. Si Vercel demande une configuration de framework, choisir *Other*.
-
-Avant une publication destinée à être indexée par Google, **retirer** la balise `<meta name="robots" content="noindex, nofollow" />` du fichier `index.html`. Elle est volontairement présente ici pour éviter l'indexation d'un faux studio. Pour une utilisation commerciale, remplacer aussi les textes et projets fictifs, les mentions légales et l'adresse email.
-
-## Limites assumées
-
-- Nova Studio, ses trois réalisations et son adresse email sont **fictifs**.
-- Pas de formulaire, prise de rendez-vous, paiement, suivi analytics, backend, base de données ou CMS.
-- Les appels à l'action font défiler la page ou ouvrent l'application email de l'utilisateur.
-- Les visuels sont des illustrations vectorielles originales, non des sites de vrais clients.
-- L'année du copyright est inscrite en dur pour éviter d'ajouter un script à cette fin.
-
-## Validation technique
-
-À contrôler : présence des sept blocs fonctionnels, liens d'ancrage, ouverture / fermeture du menu mobile, absence de débordement horizontal, affichage aux tailles courantes, visibilité du focus, préférence `prefers-reduced-motion`, absence de requêtes externes et absence d'erreurs JavaScript.
-
-Le projet est **un premier exercice de réalisation et de livraison**, pas une véritable agence prête à recevoir des commandes.
+Pas de formulaire, chat, réservation, compte utilisateur, paiement, CMS ou API. Les cartes des démonstrations présentent des visuels, sans prétendre ouvrir des études de cas inexistantes. Les adresses fictives et l'avis « projet fictif » doivent être remplacés uniquement si un jour une véritable activité les justifie. `robots=noindex,nofollow` est volontaire pour une démonstration qui ne représente pas une entreprise réelle.

@@ -1,41 +1,30 @@
-// Une seule interaction JavaScript : ouvrir/fermer le menu sur petit écran.
-const menuButton = document.querySelector('.menu-toggle');
-const navigation = document.querySelector('#navigation-principale');
+// Navigation mobile : une seule interaction, sans dépendance.
+const menuButton = document.querySelector('.menu-button');
+const mobileNav = document.querySelector('#mobile-nav');
 
-if (menuButton && navigation) {
+if (menuButton && mobileNav) {
   function closeMenu() {
+    mobileNav.hidden = true;
     menuButton.setAttribute('aria-expanded', 'false');
     menuButton.setAttribute('aria-label', 'Ouvrir le menu de navigation');
-    navigation.dataset.open = 'false';
     document.body.classList.remove('menu-open');
   }
 
   menuButton.addEventListener('click', () => {
-    const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', String(!isOpen));
-    menuButton.setAttribute('aria-label', isOpen ? 'Ouvrir le menu de navigation' : 'Fermer le menu de navigation');
-    navigation.dataset.open = String(!isOpen);
-    document.body.classList.toggle('menu-open', !isOpen);
+    const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+    mobileNav.hidden = !willOpen;
+    menuButton.setAttribute('aria-expanded', String(willOpen));
+    menuButton.setAttribute('aria-label', willOpen ? 'Fermer le menu de navigation' : 'Ouvrir le menu de navigation');
+    document.body.classList.toggle('menu-open', willOpen);
   });
 
-  navigation.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && navigation.dataset.open === 'true') {
-      closeMenu();
-      menuButton.focus();
-    }
-  });
-
-  document.addEventListener('click', (event) => {
-    if (navigation.dataset.open === 'true' && !navigation.contains(event.target) && !menuButton.contains(event.target)) {
-      closeMenu();
-    }
-  });
-
-  window.matchMedia('(min-width: 901px)').addEventListener('change', (event) => {
-    if (event.matches) closeMenu();
+  mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 800) closeMenu(); });
+  document.addEventListener('click', event => {
+    if (!mobileNav.hidden && !mobileNav.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
   });
 }
+
+const yearNode = document.querySelector('#year');
+if (yearNode) yearNode.textContent = String(new Date().getFullYear());
