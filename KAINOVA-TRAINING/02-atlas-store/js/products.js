@@ -5,7 +5,27 @@ export const CATEGORIES = Object.freeze([
   { id: 'telephone', label: 'Pour smartphone', short: 'Smartphone', description: 'Les détails qui changent tout.', art: 'coque-magsafe' },
   { id: 'informatique', label: 'Bureau & ordinateur', short: 'Bureau', description: 'Votre espace, mieux équipé.', art: 'clavier-mini' },
 ]);
-const images = id => [`assets/images/${id}.svg`, `assets/images/${id}-detail.svg`];
+
+// Photos d'illustration provenant d'Unsplash et Pexels. Les modèles Atlas sont fictifs.
+export const PHOTO_URLS = Object.freeze({
+  'neo-pods': 'https://images.unsplash.com/photo-1753973169894-ba4ebd59aff7?auto=format&fit=crop&w=1050&q=82',
+  'studio-wave': 'https://images.unsplash.com/photo-1669666227952-46fb71f14afa?auto=format&fit=crop&w=1050&q=82',
+  'pulse-mini': 'https://images.unsplash.com/photo-1612795146974-84dbe538f4a4?auto=format&fit=crop&w=1050&q=82',
+  'filaires-usbc': 'https://images.pexels.com/photos/6251/pexels-photo-6251.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'gan-35': 'https://images.pexels.com/photos/4097207/pexels-photo-4097207.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'cable-loop': 'https://images.pexels.com/photos/3921633/pexels-photo-3921633.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'power-10k': 'https://images.pexels.com/photos/38648941/pexels-photo-38648941.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'station-trio': 'https://images.unsplash.com/photo-1678851836066-dc27614cc56b?auto=format&fit=crop&w=1050&q=82',
+  'coque-magsafe': 'https://images.pexels.com/photos/7360460/pexels-photo-7360460.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'support-fold': 'https://images.pexels.com/photos/16017173/pexels-photo-16017173.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'verre-edge': 'https://images.pexels.com/photos/7742506/pexels-photo-7742506.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'anneau-grip': 'https://images.pexels.com/photos/11025652/pexels-photo-11025652.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'clavier-mini': 'https://images.pexels.com/photos/824243/pexels-photo-824243.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'souris-air': 'https://images.unsplash.com/photo-1707592691247-5c3a1c7ba0e3?auto=format&fit=crop&w=1050&q=82',
+  'hub-six': 'https://images.pexels.com/photos/20076003/pexels-photo-20076003.jpeg?auto=compress&cs=tinysrgb&w=1050',
+  'webcam-hd': 'https://images.pexels.com/photos/10864867/pexels-photo-10864867.jpeg?auto=compress&cs=tinysrgb&w=1050',
+});
+const images = id => [PHOTO_URLS[id], 'assets/images/' + id + '-detail.svg'];
 const variation = (id, name, stock, color, extraPrice = 0) => ({ id, name, stock, color, extraPrice });
 export const PRODUCTS = Object.freeze([
   { id: 'neo-pods', name: 'Neo Pods', sub: 'Écouteurs Bluetooth', category: 'audio', price: 18500, badge: 'Sélection Atlas', featured: true, tagline: 'Le rythme, partout.', description: 'Des écouteurs sans fil compacts, imaginés pour accompagner les moments du quotidien. Modèle de démonstration.', features: ['Connexion sans fil Bluetooth', 'Boîtier de rangement compact', 'Commandes tactiles', 'Recharge USB-C'], keywords: ['bluetooth','tws','écouteurs','sans fil','musique'], images: images('neo-pods'), variants: [variation('noir','Noir graphite',8,'#252832'),variation('blanc','Blanc craie',6,'#e7e4df'),variation('argile','Argile',0,'#d28e72')] },
